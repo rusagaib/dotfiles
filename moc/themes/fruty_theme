@@ -1,0 +1,42 @@
+##############################################################################
+#
+# here's my theme for the great moc.
+# it's black/orange (on xterm it's black/yellow :-)
+#
+##############################################################################
+
+background           = white   black
+frame                = #af87ff black
+window_title         = white   black
+directory            = white   black  bold
+selected_directory   = black   #af87ff
+playlist             = white   black
+selected_playlist    = black   #af87ff
+file                 = white   black
+selected_file        = black   #af87ff
+marked_file          = #af87ff black
+marked_selected_file = #af87ff black  bold,reverse
+info                 = #af87ff black
+selected_info        = #af87ff black  bold
+marked_info          = #af87ff black  bold
+marked_selected_info = #af87ff black  bold,reverse
+status               = white   black
+title                = #af87ff black
+state                = #af87ff black
+current_time         = white   black  bold
+time_left            = white   black  bold
+total_time           = white   black  bold
+time_total_frames    = white   black
+sound_parameters     = white   black  bold
+legend               = white   black
+disabled             = black   black  bold
+enabled              = white   black  bold
+empty_mixer_bar      = white   black
+filled_mixer_bar     = black   #af87ff
+empty_time_bar       = white   black
+filled_time_bar      = white   #af87ff
+entry                = white   black
+entry_title          = #af87ff black  bold
+error                = #af87ff black  bold
+message              = yellow  black  bold
+plist_time           = white   black

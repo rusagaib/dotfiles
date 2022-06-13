@@ -1,0 +1,14 @@
+#------------------------------------------------------------
+## .rusahq
+## Adding formating on history 
+export HISTTIMEFORMAT="%F %T "
+
+## Adding path 
+export PATH=$PATH:$HOME/P/ytdwn
+export PATH=$PATH:$HOME/P/ytdwn/env/bin
+
+alias nv=nvim
+alias ytdwn='$HOME/P/ytdwn/ytdwn.sh'
+alias rcmdir='less "$HOME/P/command_list/command_dir.md"' 
+
+################################################################################
