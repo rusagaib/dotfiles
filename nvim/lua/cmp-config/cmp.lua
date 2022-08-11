@@ -17,7 +17,7 @@ end
 local lspkind = require('lspkind')
 local luasnip = require('luasnip')
 local cmp = require('cmp')
---local cmp_buffer = require("cmp_buffer") --used in sorting
+local cmp_buffer = require("cmp_buffer") --used in sorting
 
 cmp.setup({
   snippet = {
@@ -68,7 +68,7 @@ cmp.setup({
         end
       }
     },
-    { name = 'cmdline' },
+    --{ name = 'cmdline' },
     { name = 'path' },
     { name = 'nvim_lua' },
   },
@@ -91,14 +91,18 @@ cmp.setup({
     --    return cmp_buffer:compare_locality(...)
     --  end,
     --}
-  }
+  },
+  experimental = { 
+    native_menu = false,
+    ghost_text = false,
+  },
 })
-
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
   sources = {
-    { name = 'cmdline' }
+    { name = 'native_menu' }
+    --{ name = 'cmdline' }
   }
 })
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
@@ -107,5 +111,3 @@ cmp.setup.cmdline('/', {
     { name = 'buffer' }
   }
 })
-
-

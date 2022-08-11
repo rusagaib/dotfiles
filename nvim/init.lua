@@ -1,7 +1,6 @@
 require('settings')
-require("mapping")
+require('mapping')
 require('color-config.nightfox')
 require('packer-config')
-require('cmp-config')
 require('lsp-config')
 require('telescope-config')

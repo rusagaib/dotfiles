@@ -1,7 +1,7 @@
 local set = vim.o
 
 set.expandtab=true
-set.smarttab=true
+--set.smarttab=true
 set.shiftwidth=2
 set.softtabstop=2
 

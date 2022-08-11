@@ -63,10 +63,10 @@ return require('packer').startup(function()
   use { "AckslD/nvim-neoclip.lua" }
     
   --lsp
-  use {
-    'neovim/nvim-lspconfig',
-    config = function () require("lsp-config") end,
-  }
+--  use {
+--    'williamboman/nvim-lsp-installer',  
+--    'neovim/nvim-lspconfig',
+--  }
 
   --auto complete
   use {
@@ -97,7 +97,7 @@ return require('packer').startup(function()
   use {
       "williamboman/nvim-lsp-installer",
       {
-          -- "neovim/nvim-lspconfig",
+          "neovim/nvim-lspconfig",
           config = function()
               require("nvim-lsp-installer").setup {}
               local lspconfig = require("lspconfig")
@@ -105,5 +105,6 @@ return require('packer').startup(function()
           end
       }
   }
+
 
 end)
