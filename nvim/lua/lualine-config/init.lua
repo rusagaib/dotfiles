@@ -1,0 +1,1 @@
+require("lualine-config/lualine")

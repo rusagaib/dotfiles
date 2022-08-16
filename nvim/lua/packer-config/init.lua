@@ -12,7 +12,6 @@ return require('packer').startup(function()
   -- color-schemes
   use { 'EdenEast/nightfox.nvim' }
 
-
   -- Lazy loading:
   -- Load on specific commands
   use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
@@ -34,7 +33,7 @@ return require('packer').startup(function()
   }
 
   -- Plugins can have post-install/update hooks
-    
+
 
   -- Post-install/update hook with neovim command
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
@@ -61,7 +60,7 @@ return require('packer').startup(function()
   }
 
   use { "AckslD/nvim-neoclip.lua" }
-    
+
   --lsp
 --  use {
 --    'williamboman/nvim-lsp-installer',  
@@ -106,5 +105,10 @@ return require('packer').startup(function()
       }
   }
 
+  -- use lualine (status line)
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
 
 end)

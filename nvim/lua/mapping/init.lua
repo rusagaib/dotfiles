@@ -25,7 +25,36 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
-keymap("n", "<leader>e", ":Lex 30<cr>", opts)
+--keymap("n", "<leader>e", ":Lex 30<cr>", opts)
+
+-- Reload config without restart nvim 
+keymap("n", "<leader>r", ":so %<CR>", opts)
+
+-- fast saving with leader and s 
+keymap("n", "<leader>s", ":w<CR>", opts)
+-- keymap("i", "<leader>s", "<C-c>:w<CR>", opts)
+
+-- fast Open explorer
+keymap("n", "<leader>e", ":Explor<Return>", opts)
+
+-- Increment/decrement
+keymap("n", "+", "<C-a>", opts)
+keymap("n", "-", "<C-x>", opts)
+
+-- Delete a word backward
+-- keymap("n", "dw", "vb'_d", opts)
+
+-- Select all 
+keymap("n", "<C-a>", "gg<S-v>G", opts)
+
+-- Navigate tab
+keymap("n", "te", ":tabedit", opts)
+keymap("n", "tn", ":tabNext<Return>", opts)
+-- keymap("n", "<leader>td", ":tabclose<Return>", opts)
+
+-- split window
+keymap("n", "ss", ":split<Return><C-w>w", opts)
+keymap("n", "sv", ":vsplit<Return><C-w>w", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -36,11 +65,16 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
-keymap("n", "<leader-db>", ":bd<CR>", opts)
+--keymap("n", "<leader>b", ":b", opts)
+keymap("n", "<leader>be", ":buffers<Return>", opts)
+keymap("n", "<leader>bd", ":bd", opts)
 
 -- Move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
+
+-- Reload configuration without restart nvim
+keymap("n", "<leader>r", ":so %<CR>", opts)
 
 -- Insert --
 -- Press jk fast to enter
