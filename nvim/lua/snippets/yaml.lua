@@ -1,0 +1,248 @@
+local ls = require("luasnip")
+local s = ls.s
+local i = ls.i
+local t = ls.t
+
+local d = ls.dynamic_node
+local c = ls.choice_node
+local f = ls.function_node
+local sn = ls.snippet_node
+
+local fmt = require("luasnip.extras.fmt").fmt
+local rep = require("luasnip.extras").rep
+
+-- spec snippet
+ls.add_snippets("yaml", {
+      -- adding first snippets
+      -- this snippet for openAPI3
+      s(
+      -- set trigger call
+        "oaD",
+      -- begin snippets
+        {
+          t({"openapi: 3.0.0", ""}),
+          t({"info:", ""}),
+          t({"  title: apiTest", ""}),
+          t({"  version: '1.0'", ""}),
+          t({"  description: This is a sample API spec for Development.", ""}),
+          t({"  termsOfService: http://example.com/terms/", ""}),
+          t({"  contact:", ""}),
+          t({"    name: rusagaib", ""}),
+          t({"    url: https://example.com", ""}),
+          t({"    email: example@example.com", ""}),
+          t({"  license:", ""}),
+          t({"    name: MIT License", ""}),
+          t({"    url: https://mit-license.org/", ""}),
+          t({"servers:", ""}),
+          t({"  - url: http://{base-url}:8080/api/{API-version}", ""}),
+          t({"    description: Development server", ""}),
+          t({"    variables:", ""}),
+          t({"      base-url: ", ""}),
+          t({"        description: Server Environment", ""}),
+          t({"        enum: ", ""}),
+          t({"          - localhost", ""}),
+          t({"          - 127.0.0.1", ""}),
+          t({"        default: 127.0.0.1", ""}),
+          t({"      API-version:", ""}),
+          t({"        description: API Version", ""}),
+          t({"        enum:", ""}),
+          t({"          - v1", ""}),
+          t({"          - v2", ""}),
+          t({"        default: v1", ""}),
+          t({"paths:", ""}),
+          t({"  # this route example: get, post, put/patch, & destroy", ""}),
+          t({"  /example-get:", ""}),
+          t({"  /example-post:", ""}),
+          t({"  /example-patch/{id}:", ""}),
+          t({"  /example-destroy/{id}:", ""}),
+          i(0)
+      }),
+
+      -- adding other snippet..
+      s("oaRget", {
+
+        t({"get:", ""}),
+        t({"  summary: Get all example data", ""}),
+        t({"  description: Get all example data ", ""}),
+        t({"  responses:", ""}),
+        t({"    '200':", ""}),
+        t({"      description: successful operation", ""}),
+        t({"      content:", ""}),
+        t({"        application/json:", ""}),
+        t({"          schema:", ""}),
+        t({"            type: array                 ", ""}),
+        t({"            items: ", ""}),
+        t({"              type: object", ""}),
+        t({"              properties:   ", ""}),
+        t({"                name:", ""}),
+        t({"                  type: string", ""}),
+        t({"                price:", ""}),
+        t({"                  type: integer", ""}),
+        t({"                  format: int32", ""}),
+        t({"    '404':", ""}),
+        t({"      description: Error page not found", ""}),
+        t({"      content:", ""}),
+        t({"        aplication/json:", ""}),
+        t({"          schema:", ""}),
+        t({"            type: string", ""}),
+        t({"            default: page not found", ""}),
+        i(0)
+
+      }),
+      
+      s("oaRpos", {
+
+        t({"post:", ""}),
+        t({"  summary: create new example", ""}),
+        t({"  description: create new example data", ""}),
+        t({"  requestBody:", ""}),
+        t({"    required: true", ""}),
+        t({"    content: ", ""}),
+        t({"      aplication/json:", ""}),
+        t({"        schema:", ""}),
+        t({"          type: object", ""}),
+        t({"          properties:", ""}),
+        t({"            name:", ""}),
+        t({"              description: Add new stuff_name", ""}),
+        t({"              type: string", ""}),
+        t({"              minLength: 1", ""}),
+        t({"            price:", ""}),
+        t({"              description: Add new stuff_price", ""}),
+        t({"              type: integer", ""}),
+        t({"              minLength: 1", ""}),
+        t({"        examples:", ""}),
+        t({"          test-1:", ""}),
+        t({"            description: Example post1 succes 200", ""}),
+        t({"            value: ", ""}),
+        t({"              name: chair", ""}),
+        t({"              price: 2000000", ""}),
+        t({"          test-2:", ""}),
+        t({"            description: Example post2 error stuff_name & stuff_price", ""}),
+        t({"            value: ", ""}),
+        t({"              name: b", ""}),
+        t({"              price: 1000000", ""}),
+        t({"          test-3:", ""}),
+        t({"            description: Example post2 error name ", ""}),
+        t({"            value: ", ""}),
+        t({"              name: b", ""}),
+        t({"              price: 20000000", ""}),
+        t({"          test-4:", ""}),
+        t({"            description: Example post2 error stuff_price", ""}),
+        t({"            value: ", ""}),
+        t({"              name: radio", ""}),
+        t({"              price: 1000000              ", ""}),
+        t({"  responses:", ""}),
+        t({"    '200':", ""}),
+        t({"      description: successful operation", ""}),
+        t({"      content:", ""}),
+        t({"        application/json:", ""}),
+        t({"          schema:", ""}),
+        t({"            type: array                 ", ""}),
+        t({"            items: ", ""}),
+        t({"              type: object", ""}),
+        t({"              properties:   ", ""}),
+        t({"                name:", ""}),
+        t({"                  type: string", ""}),
+        t({"                price:", ""}),
+        t({"                  type: integer", ""}),
+        t({"                  format: int32", ""}),
+        t({"    '404':", ""}),
+        t({"      description: Error page not found", ""}),
+        t({"      content:", ""}),
+        t({"        aplication/json:", ""}),
+        t({"          schema:", ""}),
+        t({"            type: string", ""}),
+        t({"            default: \"page not found\"", ""}),
+        t({"    '422':", ""}),
+        t({"      description: Unprocessable Entity", ""}),
+        t({"      content:", ""}),
+        t({"        aplication/json:", ""}),
+        t({"          schema:", ""}),
+        t({"            type: object", ""}),
+        t({"            properties:", ""}),
+        t({"              name:", ""}),
+        t({"                type: array", ""}),
+        t({"                items:", ""}),
+        t({"                  type: string", ""}),
+        t({"                  default: The name must be at least 2 characters. ", ""}),
+        t({"              price:", ""}),
+        t({"                type: array", ""}),
+        t({"                items:", ""}),
+        t({"                  type: string", ""}),
+        t({"                  default: The price must be between 2000000 and 10000000.", ""}),
+        i(0)
+      }),
+
+      s("oaRpatch", {
+
+        t({"patch:", ""}),
+        t({"  summary: update a stuff example by ID.", ""}),
+        t({"  description: Update existing example data", ""}),
+        t({"  parameters: ", ""}),
+        t({"    - name: id", ""}),
+        t({"      in: path", ""}),
+        t({"      required: true", ""}),
+        t({"      description: id for update example data", ""}),
+        t({"      schema:", ""}),
+        t({"        type: string", ""}),
+        t({"        nullable: false", ""}),
+        t({"        default: 1", ""}),
+        t({"  requestBody:", ""}),
+        t({"    required: true", ""}),
+        t({"    content:", ""}),
+        t({"      aplication/json:", ""}),
+        t({"        schema:", ""}),
+        t({"          type: object", ""}),
+        t({"          properties:", ""}),
+        t({"            price:", ""}),
+        t({"              description: update example data", ""}),
+        t({"              type: integer", ""}),
+        t({"              format: int32", ""}),
+        t({"              required: ", ""}),
+        t({"                 - 'true'", ""}),
+        t({"              minLength: 1", ""}),
+        t({"        examples:", ""}),
+        t({"          test-1:", ""}),
+        t({"            description: Example patch value by 1000000", ""}),
+        t({"            value: ", ""}),
+        t({"              price: 1000000", ""}),
+        t({"          test-2:", ""}),
+        t({"            description: Example patch value by 2000000", ""}),
+        t({"            value: ", ""}),
+        t({"              price: 20000000", ""}),
+        t({"  responses:", ""}),
+        t({"    '200':", ""}),
+        t({"      description: successful operation", ""}),
+        t({"      content:", ""}),
+        t({"        application/json:", ""}),
+        t({"          schema:", ""}),
+        t({"            type: array                 ", ""}),
+        t({"            items: ", ""}),
+        t({"              type: object", ""}),
+        t({"              properties:   ", ""}),
+        t({"                name:", ""}),
+        t({"                  type: string", ""}),
+        t({"                price:", ""}),
+        t({"                  type: integer", ""}),
+        t({"                  format: int32", ""}),
+        t({"    '404':", ""}),
+        t({"      description: Error page not found", ""}),
+        t({"      content:", ""}),
+        t({"        aplication/json:", ""}),
+        t({"          schema:", ""}),
+        t({"            type: string", ""}),
+        t({"            default: \"page not found\"", ""}),
+        i(0)
+      }),
+
+
+
+-- end add_snippets
+}, {
+      -- adding key snippets for it's filetype
+      key = "yaml"
+})
+
+
+
+
