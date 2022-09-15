@@ -36,6 +36,19 @@ cmp.setup({
     }
   },
   mapping = {
+		["<C-k>"] = cmp.mapping.select_prev_item(),
+		["<C-j>"] = cmp.mapping.select_next_item(),
+		["<A-o>"] = cmp.mapping.select_prev_item(),
+		["<A-i>"] = cmp.mapping.select_next_item(),
+		["<A-u>"] = cmp.mapping.confirm({ select = true }),
+		-- 	["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
+		-- 	["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
+		-- 	["<C-i>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+		--	["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+		["<C-e>"] = cmp.mapping({
+			i = cmp.mapping.abort(),
+			c = cmp.mapping.close(),
+		}),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -100,13 +113,15 @@ cmp.setup({
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
   sources = {
-    { name = 'native_menu' }
-    --{ name = 'cmdline' }
+   --{ name = 'native_menu' }
+    { name = 'cmdline' }
   }
 })
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', {
+  mapping = cmp.mapping.preset.cmdline(),
   sources = {
     { name = 'buffer' }
   }

@@ -35,7 +35,7 @@ keymap("n", "<leader>s", ":w<CR>", opts)
 -- keymap("i", "<leader>s", "<C-c>:w<CR>", opts)
 
 -- fast Open explorer
-keymap("n", "<leader>e", ":Explor<Return>", opts)
+keymap("n", "<leader>E", ":Explore<Return>", opts)
 
 -- Increment/decrement
 keymap("n", "+", "<C-a>", opts)
@@ -74,7 +74,7 @@ keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
 -- Reload configuration without restart nvim
-keymap("n", "<leader>r", ":so %<CR>", opts)
+-- keymap("n", "<leader>r", ":so %<CR>", opts)
 
 -- Insert --
 -- Press jk fast to enter

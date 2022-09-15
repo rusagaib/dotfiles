@@ -48,7 +48,12 @@ return require('packer').startup(function()
   }
 
   -- use markdown previer
-  use {'iamcco/markdown-preview.nvim'}
+  -- use {'iamcco/markdown-preview.nvim'}
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  })
+  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
   -- use telescope
   use {
@@ -104,6 +109,9 @@ return require('packer').startup(function()
           end
       }
   }
+
+-- use LSP-Installer (MASON)
+--  use { "williamboman/mason.nvim" }
 
   -- use lualine (status line)
   use {

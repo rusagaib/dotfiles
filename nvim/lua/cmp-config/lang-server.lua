@@ -45,7 +45,8 @@ local servers = {
 	"sumneko_lua",
 	"ltex",
 	"eslint",
-        "intelephense",
+  "intelephense",
+  "yamlls",
 }
 
 ---@diagnostic disable-next-line: undefined-global
