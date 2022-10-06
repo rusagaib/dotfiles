@@ -49,10 +49,10 @@ return require('packer').startup(function()
 
   -- use markdown previer
   -- use {'iamcco/markdown-preview.nvim'}
-  use({
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
-  })
+ -- use({
+ --   "iamcco/markdown-preview.nvim",
+ --   run = function() vim.fn["mkdp#util#install"]() end,
+ -- })
   use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
   -- use telescope
@@ -118,5 +118,11 @@ return require('packer').startup(function()
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
+
+  -- adding swagger-preview
+  -- use ({ "shuntaka9576/preview-swagger.nvim", run="npm install"})
+
+  -- use ({ "xavierchow/vim-swagger-preview" })
+  use { "rusagaib/oas-preview.nvim" }
 
 end)
