@@ -2,7 +2,14 @@
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
-bspc monitor -d I II III IV V VI VII VIII IX X
+# config for dual monitor
+if [[ $(xrandr -q | grep 'HDMI0 connected') ]]; then
+  xrandr --output eDP1 --primary --mode 1920x1080 --rotate normal --output HDMI1 --mode 1920x1080 --rotate normal --top-of eDP1 
+  bspc monitor HDMI1 -d VI 
+  bspc monitor eDP1 -d I II IV V 
+fi 
+
+bspc monitor eDP1 -d I II IV V 
 
 bspc config border_width         2
 bspc config window_gap          12
