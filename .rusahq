@@ -1,14 +1,27 @@
 #------------------------------------------------------------
 ## .rusahq
+
+## Adding editor
+export EDITOR=nvim
+
 ## Adding formating on history 
 export HISTTIMEFORMAT="%F %T "
 
-## Adding path 
+## Adding nvm path for manage my node version
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+## Adding custom path 
 export PATH=$PATH:$HOME/P/ytdwn
 export PATH=$PATH:$HOME/P/ytdwn/env/bin
 
+## Some custom alias 
 alias nv=nvim
 alias ytdwn='$HOME/P/ytdwn/ytdwn.sh'
 alias rcmdir='less "$HOME/P/command_list/command_dir.md"' 
+alias prodd='$HOME/.config/tmux/prodide.sh'
 
+## this just for fun tbh
+export mehh='_(:3 _|)_'
 ################################################################################
