@@ -96,22 +96,27 @@ return require('packer').startup(function()
     config = function () require("luasnip-config") end,
     requires = {'rafamadriz/friendly-snippets'},
   }
-  
+
 -- use { 'williamboman/nvim-lsp-installer' } --used for lang-server 
-  use {
-      "williamboman/nvim-lsp-installer",
-      {
-          "neovim/nvim-lspconfig",
-          config = function()
-              require("nvim-lsp-installer").setup {}
-              local lspconfig = require("lspconfig")
-              lspconfig.sumneko_lua.setup {}
-          end
-      }
-  }
+--  use {
+--      "williamboman/nvim-lsp-installer",
+--      {
+--          "neovim/nvim-lspconfig",
+--          config = function()
+--              require("nvim-lsp-installer").setup {}
+--              local lspconfig = require("lspconfig")
+--              lspconfig.sumneko_lua.setup {}
+--          end
+--      }
+--  }
 
 -- use LSP-Installer (MASON)
 --  use { "williamboman/mason.nvim" }
+  use {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "neovim/nvim-lspconfig",
+  }
 
   -- use lualine (status line)
   use {
@@ -120,9 +125,6 @@ return require('packer').startup(function()
   }
 
   -- adding swagger-preview
-  -- use ({ "shuntaka9576/preview-swagger.nvim", run="npm install"})
-
-  -- use ({ "xavierchow/vim-swagger-preview" })
   use { "rusagaib/oas-preview.nvim" }
 
 end)

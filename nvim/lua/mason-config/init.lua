@@ -1,0 +1,1 @@
+require ("mason-config/mason")
