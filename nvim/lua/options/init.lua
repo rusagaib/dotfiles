@@ -67,3 +67,11 @@ vim.filetype.add {
   },
 }
 
+-- netrw style hidden banner (still can show it by pres I)
+vim.cmd "let g:netrw_banner = 0"
+-- netrw_liststyle tree view
+-- vim.cmd "let g:netrw_liststyle = 3"
+-- netrw_liststyle default
+vim.cmd "let g:netrw_liststyle = 0"
+
+

@@ -48,8 +48,11 @@ keymap("n", "-", "<C-x>", opts)
 keymap("n", "<C-a>", "gg<S-v>G", opts)
 
 -- Navigate tab
-keymap("n", "te", ":tabedit", opts)
-keymap("n", "tn", ":tabNext<Return>", opts)
+-- cus idunno there some config mapping with tabprevious with gt 
+-- then let it be~
+-- i just add tt to tabnew
+keymap("n", "tt", ":tabnew<CR>", opts)
+-- keymap("n", "ty", ":tabclose<CR>", opts)
 -- keymap("n", "<leader>td", ":tabclose<Return>", opts)
 
 -- split window
@@ -66,19 +69,29 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 --keymap("n", "<leader>b", ":b", opts)
-keymap("n", "<leader>be", ":buffers<Return>", opts)
-keymap("n", "<leader>bd", ":bd", opts)
+keymap("n", "<leader>bv", ":buffers<Return>", opts)
+keymap("n", "<leader>bn", ":bd", opts)
 
 -- Move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
--- Reload configuration without restart nvim
--- keymap("n", "<leader>r", ":so %<CR>", opts)
+-- Close buffers
+-- this can be dangerous so becarefull
+keymap("n", "<C-q>", ":q", opts)
+
+-- Clear latest search 
+-- keymap("n", "<leader>cl", ":nohlsearch<CR>", opts)
+
+-- Usefull replace using Ragex
+-- change single quote to double quote
+-- keymap("v", "<leader>gr", ":s/\%V'\%V/"/g", opts)
+
+
 
 -- Insert --
 -- Press jk fast to enter
-keymap("i", "jk", "<ESC>", opts)
+-- keymap("i", "jk", "<ESC>", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -111,6 +124,8 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 -- keymap("n", "<leader>ff", "<cmd>lua require'telescope.builtin'.find_files().get_dropdown({ previewer = true })<cr>", opts)
 -- keymap("n", "<leader>fb", "<cmd>lua require'telescope.builtin'.find_files().get_dropdown({ previewer = true })<cr>", opts)
 
+-- Telescope mapping
+keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
 keymap("n", "<leader>ff", "<cmd>Telescope file_browser<cr>", opts)
 keymap("n", "<leader>fg", "<cmd>lua require'telescope.builtin'.live_grep()<cr>", opts)
 

@@ -105,9 +105,6 @@ telescope.setup {
         override_generic_sorter = false,
         override_file_sorter = true,
     },
-    conda = {
-        home = '~/miniconda3/bin/python'
-        },
     find_hidden = {
       hidden_files = true -- default: false
       }, -- Your extension configuration goes here:
