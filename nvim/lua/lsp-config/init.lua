@@ -43,6 +43,11 @@ local lsp_flags = {
 require('lspconfig')['tsserver'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
+    filetypes = { 
+      "javascript", "javascriptreact", "javascript.jsx",
+      "typescript", "typescriptreact", "typescript.tsx" 
+    },
+    cmd = { "typescript-language-server", "--stdio" }
 }
 require('lspconfig')['rust_analyzer'].setup{
     on_attach = on_attach,
@@ -93,7 +98,10 @@ require('lspconfig')['html'].setup{
     capabilities = capabilities,
     settings = {},
     init_options = {
-        configurationSection = { "html", "css", "javascript", "php" },
+        configurationSection = { 
+          "html", "css", "javascript",
+          "php", "vue", "astro"
+        },
         embeddedLanguages = {
             css = true,
             javascript = true
@@ -108,7 +116,7 @@ require('lspconfig')['intelephense'].setup {
 }
 require('lspconfig')['yamlls'].setup {
   on_attach=on_attach,
-  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
   settings = {
       yaml = {
           schemas = {
@@ -118,5 +126,34 @@ require('lspconfig')['yamlls'].setup {
       }
   }
 }
-
-
+require('lspconfig')['sumneko_lua'].setup {}
+require('lspconfig')['volar'].setup {
+  on_attach = on_attach,
+  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
+  cmd = { "vue-language-server", "--stdio" }
+}
+require('lspconfig')['astro'].setup {
+  on_attach = on_attach,
+  filetypes = { "astro" },
+  cmd = { "astro-ls", "--stdio" }
+}
+require('lspconfig')['tailwindcss'].setup {
+  on_attach = on_attach,
+  filetypes = { "aspnetcorerazor", "astro", "astro-markdown", "blade", "django-html", "htmldjango", "edge", "eelixir", "elixir", "ejs", "erb", "eruby", "gohtml", "haml", "handlebars", "hbs", "html", "html-eex", "heex", "jade", "leaf", "liquid", "markdown", "mdx", "mustache", "njk", "nunjucks", "php", "razor", "slim", "twig", "css", "less", "postcss", "sass", "scss", "stylus", "sugarss", "javascript", "javascriptreact", "reason", "rescript", "typescript", "typescriptreact", "vue", "svelte" },
+  cmd = { "tailwindcss-language", "--stdio" },
+  settings = {
+    tailwindCSS = {
+      classAttributes = { "class", "className", "classList", "ngClass" },
+      lint = {
+        cssConflict = "warning",
+        invalidApply = "error",
+        invalidConfigPath = "error",
+        invalidScreen = "error",
+        invalidTailwindDirective = "error",
+        invalidVariant = "error",
+        recommendedVariantOrder = "warning"
+      },
+      validate = true
+    },
+  },
+}
