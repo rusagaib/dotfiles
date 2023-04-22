@@ -52,6 +52,7 @@ keymap("n", "<C-a>", "gg<S-v>G", opts)
 -- then let it be~
 -- i just add tt to tabnew
 keymap("n", "tt", ":tabnew<CR>", opts)
+keymap("n", "tn", ":tabNext<CR>", opts)
 -- keymap("n", "ty", ":tabclose<CR>", opts)
 -- keymap("n", "<leader>td", ":tabclose<Return>", opts)
 
@@ -68,9 +69,7 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
---keymap("n", "<leader>b", ":b", opts)
 keymap("n", "<leader>bv", ":buffers<Return>", opts)
-keymap("n", "<leader>bn", ":bd", opts)
 
 -- Move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
@@ -78,15 +77,16 @@ keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
 -- Close buffers
 -- this can be dangerous so becarefull
+--keymap("n", "<leader>b", ":b", opts)
+keymap("n", "<leader>bn", ":bd", opts)
 keymap("n", "<C-q>", ":q", opts)
 
 -- Clear latest search 
--- keymap("n", "<leader>cl", ":nohlsearch<CR>", opts)
+keymap("n", "<leader>cl", ":nohlsearch<CR>", opts)
 
 -- Usefull replace using Ragex
 -- change single quote to double quote
 -- keymap("v", "<leader>gr", ":s/\%V'\%V/"/g", opts)
-
 
 
 -- Insert --
@@ -126,6 +126,13 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- Telescope mapping
 keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
-keymap("n", "<leader>ff", "<cmd>Telescope file_browser<cr>", opts)
+keymap("n", "<leader>ff", "<cmd>Telescope fd<cr>", opts)
+keymap("n", "<leader>fe", "<cmd>Telescope file_browser<cr>", opts)
 keymap("n", "<leader>fg", "<cmd>lua require'telescope.builtin'.live_grep()<cr>", opts)
+
+-- Launch Lazygit via floatterm
+keymap("n", "<leader>lz", "<cmd>FloatermNew --height=0.95 --width=0.95 --wintype=float --name=lazygit lazygit<cr>", opts)
+
+-- enable cursor culomn
+keymap("n", "<leader>ac", "<cmd>:set cursorcolumn<cr>", opts)
 
