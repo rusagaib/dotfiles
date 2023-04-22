@@ -6,7 +6,7 @@ if (not status_ok_lspconfig) then return end
 mason.setup {}
 lspconfig.setup {
   ensure_installed = {
-    "sumneko_lua",
+    "lua_ls",
     "intelephense",
     "volar",
     "astro",
