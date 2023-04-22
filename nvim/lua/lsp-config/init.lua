@@ -126,7 +126,7 @@ require('lspconfig')['yamlls'].setup {
       }
   }
 }
-require('lspconfig')['sumneko_lua'].setup {}
+require('lspconfig')['lua_ls'].setup {}
 require('lspconfig')['volar'].setup {
   on_attach = on_attach,
   filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
