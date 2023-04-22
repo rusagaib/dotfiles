@@ -11,6 +11,8 @@ return require('packer').startup(function()
 
   -- color-schemes
   use { 'EdenEast/nightfox.nvim' }
+  use { 'rebelot/kanagawa.nvim' }
+  use { "catppuccin/nvim", as = "catppuccin" }
 
   -- Lazy loading:
   -- Load on specific commands
