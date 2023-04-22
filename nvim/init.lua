@@ -1,5 +1,6 @@
 --require('settings')
 require('options')
+require('autocmd')
 require('mapping')
 require('color-config.nightfox')
 require('packer-config')
