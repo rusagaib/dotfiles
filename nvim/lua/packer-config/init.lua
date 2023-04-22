@@ -118,6 +118,8 @@ return require('packer').startup(function()
       "neovim/nvim-lspconfig",
   }
 
+  use { 'kyazdani42/nvim-web-devicons' }
+
   -- use lualine (status line)
   use {
     'nvim-lualine/lualine.nvim',
