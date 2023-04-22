@@ -59,11 +59,11 @@ return require('packer').startup(function()
 
   -- use telescope
   use {
-    'nvim-telescope/telescope.nvim', 
+    'nvim-telescope/telescope.nvim',
     'nvim-telescope/telescope-fzy-native.nvim',
-    'nvim-telescope/telescope-file-browser.nvim', 
+    'nvim-telescope/telescope-file-browser.nvim',
     'nvim-telescope/telescope-media-files.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { {'nvim-lua/plenary.nvim'}, {'kdheepak/lazygit.nvim'} },
   }
 
   use { "AckslD/nvim-neoclip.lua" }
@@ -127,6 +127,9 @@ return require('packer').startup(function()
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
+
+  -- adding float term for lazygit 
+  use { 'voldikss/vim-floaterm' }
 
   -- adding swagger-preview
   use { "rusagaib/oas-preview.nvim" }
