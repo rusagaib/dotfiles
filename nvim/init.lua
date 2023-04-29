@@ -1,4 +1,3 @@
---require('settings')
 require('options')
 require('autocmd')
 require('mapping')
