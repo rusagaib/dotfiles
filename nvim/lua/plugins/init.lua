@@ -12,7 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-   'wbthomason/packer.nvim',
    'nvim-lua/popup.nvim',
    'nvim-lua/plenary.nvim',
     -- color-schemes
