@@ -21,15 +21,15 @@ local plugins = {
 
   -- Lazy loading:
   -- Load on specific commands
-   {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}},
+   {'tpope/vim-dispatch', lazy = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}},
 
   -- Load on a combination of conditions: specific filetypes or commands
-  -- Also run code after load (see the "config" key)
+  -- Also run code after load (see the 'config' key)
    {
     'w0rp/ale',
     ft = {'sh', 'zsh', 'bash', 'c', 'cpp', 'cmake', 'html', 'markdown', 'racket', 'vim', 'tex'},
     cmd = 'ALEEnable',
-    config = 'vim.cmd[[ALEEnable]]'
+    config = function() vim.cmd[[ALEEnable]] end
    },
 
   -- Plugins can have dependencies on other plugins
@@ -37,7 +37,7 @@ local plugins = {
     'haorenW1025/completion-nvim',
     lazy = true,
     dependencies = {
-      {'hrsh7th/vim-vsnip', lazy = true}, 
+      {'hrsh7th/vim-vsnip', lazy = true},
       {'hrsh7th/vim-vsnip-integ', lazy = true}
     }
   },
@@ -53,24 +53,19 @@ local plugins = {
 
   --  dependency and run lua function after load
    {
-    'lewis6991/gitsigns.nvim', 
-    dependencies = { 
-      'nvim-lua/plenary.nvim' 
+    'lewis6991/gitsigns.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim'
     },
     config = function() require('gitsigns').setup() end
   },
 
   --  markdown previer
-  --  {'iamcco/markdown-preview.nvim'}
- -- ({
- --   "iamcco/markdown-preview.nvim",
- --   run = function() vim.fn["mkdp#util#install"]() end,
- -- })
-  { 
-    'iamcco/markdown-preview.nvim', 
-    build = "cd app && npm install", 
-    init = function() vim.g.mkdp_filetypes = { "markdown" } end, 
-    ft = { "markdown" },
+  {
+    'iamcco/markdown-preview.nvim',
+    build = 'cd app && npm install',
+    init = function() vim.g.mkdp_filetypes = { 'markdown' } end,
+    ft = { 'markdown' },
   },
 
   --  telescope
@@ -82,13 +77,8 @@ local plugins = {
     dependencies = { {'nvim-lua/plenary.nvim'}, {'kdheepak/lazygit.nvim'} },
   },
 
+  -- clipboard manager
    'AckslD/nvim-neoclip.lua',
-
-  --lsp
---   {
---    'williamboman/nvim-lsp-installer',  
---    'neovim/nvim-lspconfig',
---  }
 
   --auto complete
    {
@@ -102,7 +92,7 @@ local plugins = {
 
    {
     'hrsh7th/nvim-cmp',
-    config = function () require("cmp-config") end,
+    config = function () require('cmp-config') end,
     dependencies = {
       'L3MON4D3/LuaSnip',        --d in config
       'onsails/lspkind.nvim',    --d in config
@@ -114,28 +104,28 @@ local plugins = {
    {
     'L3MON4D3/LuaSnip',
     --after = 'nvim-cmp',
-    config = function () require("luasnip-config") end,
+    config = function () require('luasnip-config') end,
     dependencies = {
       'rafamadriz/friendly-snippets'
     },
    },
 
 --  LSP-Installer (MASON)
---   { "williamboman/mason.nvim" }
    {
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-      "neovim/nvim-lspconfig",
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+      'neovim/nvim-lspconfig',
    },
 
-   'kyazdani42/nvim-web-devicons',
+  -- devicons
+   { 'nvim-tree/nvim-web-devicons', lazy = true },
 
   --  lualine (status line)
    {
     'nvim-lualine/lualine.nvim',
     dependencies = {
-      'kyazdani42/nvim-web-devicons',
-      opt = true }
+      'nvim-tree/nvim-web-devicons',
+      lazy = true }
    },
 
   -- adding float term for lazygit 
