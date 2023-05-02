@@ -81,14 +81,13 @@ local plugins = {
    'AckslD/nvim-neoclip.lua',
 
   --auto complete
-   {
-    'saadparwaiz1/cmp_luasnip',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-path',
-    'hrsh7th/cmp-cmdline',
-    'hrsh7th/cmp-nvim-lua'
-   },
+
+   'saadparwaiz1/cmp_luasnip',
+   'hrsh7th/cmp-nvim-lsp',
+   'hrsh7th/cmp-buffer',
+   'hrsh7th/cmp-path',
+   'hrsh7th/cmp-cmdline',
+   'hrsh7th/cmp-nvim-lua',
 
    {
     'hrsh7th/nvim-cmp',
@@ -97,22 +96,32 @@ local plugins = {
       'L3MON4D3/LuaSnip',        --d in config
       'onsails/lspkind.nvim',    --d in config
     },
-    --after = 'LuaSnip',
+    -- after = 'LuaSnip',
   },
 
   --snippet luasnip
+   { "rafamadriz/friendly-snippets" },
+
    {
     'L3MON4D3/LuaSnip',
     --after = 'nvim-cmp',
-    config = function () require('luasnip-config') end,
+    -- follow latest release.
+    version = "v1.2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    -- install jsregexp (optional!).
+    build = "make install_jsregexp",
+    -- config = function () require('luasnip-config') end,
     dependencies = {
       'rafamadriz/friendly-snippets'
     },
    },
 
+
 --  LSP-Installer (MASON)
    {
       'williamboman/mason.nvim',
+      build = ":MasonUpdate"
+   },
+   {
       'williamboman/mason-lspconfig.nvim',
       'neovim/nvim-lspconfig',
    },

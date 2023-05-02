@@ -12,7 +12,8 @@ lspconfig.setup {
     "astro",
     "tsserver",
     "cssmodules_ls",
-    "tailwindcss"
+    "tailwindcss",
+    "marksman"
   }
 }
 
@@ -20,3 +21,4 @@ require('lspconfig')['volar'].setup {}
 require('lspconfig')['astro'].setup {}
 require('lspconfig')['cssmodules_ls'].setup {}
 require('lspconfig')['tailwindcss'].setup {}
+require('lspconfig')['marksman'].setup {}

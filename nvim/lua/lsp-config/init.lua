@@ -98,7 +98,7 @@ require('lspconfig')['html'].setup{
     capabilities = capabilities,
     settings = {},
     init_options = {
-        configurationSection = { 
+        configurationSection = {
           "html", "css", "javascript",
           "php", "vue", "astro"
         },
@@ -156,4 +156,11 @@ require('lspconfig')['tailwindcss'].setup {
       validate = true
     },
   },
+}
+require('lspconfig')['marksman'].setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { 'markdown' },
+  cmd = { "marksman", "server" },
+  single_file_support = true
 }

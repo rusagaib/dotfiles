@@ -1,5 +1,5 @@
 -- load from friendly-snippets plugin
-local vs_path = vim.fn.stdpath('data')..'/site/pack/packer/start/friendly-snippets/'
+-- local vs_path = vim.fn.stdpath('data')..'/site/pack/packer/start/friendly-snippets/'
 
 -- load local snippets 
 local snippets_folder = vim.fn.stdpath("config") .. "/lua/snippets/"
@@ -20,10 +20,11 @@ ls.config.set_config {
 }
 
 -- load snippets
-require("luasnip.loaders.from_vscode").load({
-  paths=vs_path,
-  exclude={'javascript'}
-})
+require("luasnip.loaders.from_vscode").load()
+-- require("luasnip.loaders.from_vscode").load({
+--   paths=vs_path,
+--   exclude={'javascript'}
+-- })
 
 -- apply local snippets
 require("luasnip.loaders.from_lua").lazy_load({ paths = snippets_folder })
