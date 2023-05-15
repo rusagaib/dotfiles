@@ -133,6 +133,9 @@ keymap("n", "<leader>fg", "<cmd>lua require'telescope.builtin'.live_grep()<cr>",
 -- Launch Lazygit via floatterm
 keymap("n", "<leader>lz", "<cmd>FloatermNew --height=0.95 --width=0.95 --wintype=float --name=lazygit lazygit<cr>", opts)
 
+-- launch mocp via floatterm
+keymap("n", "<leader>mz", "<cmd>FloatermNew --height=0.80 --width=0.80 --wintype=float --name=mocp mocp<cr>", opts)
+
 -- enable cursor culomn
 keymap("n", "<leader>ac", "<cmd>:set cursorcolumn<cr>", opts)
 
