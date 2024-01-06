@@ -14,9 +14,7 @@ function makeitrun ()
       tmux new-window -t prod
       tmux rename-window -t prod:3 'term' 
       tmux new-window -t prod
-      tmux rename-window -t prod:4 'mocp'
-      tmux new-window -t prod
-      tmux rename-window -t prod:5 'htop'
+      tmux rename-window -t prod:4 'htop'
       tmux send-keys -t prod:htop "htop" C-m     
     ;;
     a|attach)
