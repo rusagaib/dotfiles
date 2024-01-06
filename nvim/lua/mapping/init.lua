@@ -129,6 +129,7 @@ keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
 keymap("n", "<leader>ff", "<cmd>Telescope fd<cr>", opts)
 keymap("n", "<leader>fe", "<cmd>Telescope file_browser<cr>", opts)
 keymap("n", "<leader>fg", "<cmd>lua require'telescope.builtin'.live_grep()<cr>", opts)
+keymap("n", "<leader>te", "<cmd>:tab terminal<cr>", opts)
 
 -- Launch Lazygit via floatterm
 keymap("n", "<leader>lz", "<cmd>FloatermNew --height=0.95 --width=0.95 --wintype=float --name=lazygit lazygit<cr>", opts)
@@ -139,3 +140,8 @@ keymap("n", "<leader>mz", "<cmd>FloatermNew --height=0.80 --width=0.80 --wintype
 -- enable cursor culomn
 keymap("n", "<leader>ac", "<cmd>:set cursorcolumn<cr>", opts)
 
+-- glance keymap 
+keymap("n", "gD", "<CMD>Glance definitions<CR>", opts)
+keymap("n", "gR", "<CMD>Glance references<CR>", opts)
+keymap("n", "gY", "<CMD>Glance type_definitions<CR>", opts)
+keymap("n", "gM", "<CMD>Glance implementations<CR>", opts)

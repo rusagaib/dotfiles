@@ -115,7 +115,6 @@ local plugins = {
     },
    },
 
-
 --  LSP-Installer (MASON)
    {
       'williamboman/mason.nvim',
@@ -125,6 +124,9 @@ local plugins = {
       'williamboman/mason-lspconfig.nvim',
       'neovim/nvim-lspconfig',
    },
+
+  -- glance (frontend dev)
+   { "dnlhc/glance.nvim" },
 
   -- devicons
    { 'nvim-tree/nvim-web-devicons', lazy = true },

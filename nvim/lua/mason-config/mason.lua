@@ -17,8 +17,26 @@ lspconfig.setup {
   }
 }
 
+-- lsp-config setup 
 require('lspconfig')['volar'].setup {}
 require('lspconfig')['astro'].setup {}
 require('lspconfig')['cssmodules_ls'].setup {}
-require('lspconfig')['tailwindcss'].setup {}
+require('lspconfig')['tailwindcss'].setup {
+  filetypes = { "aspnetcorerazor", "astro", "astro-markdown", "blade", "django-html", "htmldjango", "edge", "eelixir", "elixir", "ejs", "erb", "eruby", "gohtml", "haml", "handlebars", "hbs", "html", "html-eex", "heex", "jade", "leaf", "liquid", "mustache", "njk", "nunjucks", "php", "razor", "slim", "twig", "css", "less", "postcss", "sass", "scss", "stylus", "sugarss", "javascript", "javascriptreact", "reason", "rescript", "typescript", "typescriptreact", "vue", "svelte" },
+  settings = {
+    tailwindCSS = {
+      classAttributes = { "class", "className", "classList", "ngClass" },
+      lint = {
+        cssConflict = "warning",
+        invalidApply = "error",
+        invalidConfigPath = "error",
+        invalidScreen = "error",
+        invalidTailwindDirective = "error",
+        invalidVariant = "error",
+        recommendedVariantOrder = "warning"
+      },
+      validate = true
+    },
+  },
+}
 require('lspconfig')['marksman'].setup {}

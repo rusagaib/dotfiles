@@ -60,7 +60,7 @@ require('lspconfig')['rust_analyzer'].setup{
 require('lspconfig')['emmet_ls'].setup{
     -- on_attach = on_attach,
     capabilities = capabilities,
-    filetypes = { 'html', 'php', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
+    filetypes = { 'html', 'php', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'vue' },
     init_options = {
       html = {
         options = {
@@ -82,16 +82,17 @@ require('lspconfig')['pyright'].setup{
   on_attach = on_attach,
   capabilities = capabilities,
   flags = lsp_flags,
+  single_file_support = true,
   settings = {
     python = {
       analysis = {
         autoSearchPaths = true,
         diagnosticMode = "workspace",
-        useLibraryCodeForTypes = true
+        useLibraryCodeForTypes = true,
+        typeCheckingMode = "basic"
       }
     }
   },
-  single_file_supprt = true
 }
 require('lspconfig')['html'].setup{
     on_attach = on_attach,
@@ -139,7 +140,7 @@ require('lspconfig')['astro'].setup {
 }
 require('lspconfig')['tailwindcss'].setup {
   on_attach = on_attach,
-  filetypes = { "aspnetcorerazor", "astro", "astro-markdown", "blade", "django-html", "htmldjango", "edge", "eelixir", "elixir", "ejs", "erb", "eruby", "gohtml", "haml", "handlebars", "hbs", "html", "html-eex", "heex", "jade", "leaf", "liquid", "markdown", "mdx", "mustache", "njk", "nunjucks", "php", "razor", "slim", "twig", "css", "less", "postcss", "sass", "scss", "stylus", "sugarss", "javascript", "javascriptreact", "reason", "rescript", "typescript", "typescriptreact", "vue", "svelte" },
+  filetypes = { "aspnetcorerazor", "astro", "astro-markdown", "blade", "django-html", "htmldjango", "edge", "eelixir", "elixir", "ejs", "erb", "eruby", "gohtml", "haml", "handlebars", "hbs", "html", "html-eex", "heex", "jade", "leaf", "liquid", "mustache", "njk", "nunjucks", "php", "razor", "slim", "twig", "css", "less", "postcss", "sass", "scss", "stylus", "sugarss", "javascript", "javascriptreact", "reason", "rescript", "typescript", "typescriptreact", "vue", "svelte" },
   cmd = { "tailwindcss-language", "--stdio" },
   settings = {
     tailwindCSS = {
