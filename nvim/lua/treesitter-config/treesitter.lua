@@ -4,7 +4,8 @@ if not status_ok then
 end
 
 configs.setup {
-  ensure_installed = "all",
+  -- ensure_installed = "all",
+  ensure_installed = { "c", "lua", "vim", "vimdoc", "bash", "yaml", "python" },
   sync_install = false,
   ignore_install = { "" },
   highlight = {
