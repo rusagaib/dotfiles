@@ -1,1 +1,0 @@
-require("telescope-config/telescope")

@@ -47,6 +47,7 @@ local options = {
 --vim.opt.fillchars = vim.opt.fillchars + "vertleft: "
 --vim.opt.fillchars = vim.opt.fillchars + "vertright: "
 
+vim.opt.termguicolors = true
 vim.opt.fillchars = vim.opt.fillchars + 'eob: '
 vim.opt.fillchars:append {
   stl = ' ',

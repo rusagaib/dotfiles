@@ -20,10 +20,15 @@ vim.g.maplocalleader = " "
 
 -- Normal --
 -- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+keymap("n", "<leader>h", "<C-w>h", opts)
+keymap("n", "<leader>j", "<C-w>j", opts)
+keymap("n", "<leader>k", "<C-w>k", opts)
+keymap("n", "<leader>l", "<C-w>l", opts)
+
+-- keymap("n", "<C-h>", "<C-w>h", opts)
+-- keymap("n", "<C-j>", "<C-w>j", opts)
+-- keymap("n", "<C-k>", "<C-w>k", opts)
+-- keymap("n", "<C-l>", "<C-w>l", opts)
 
 --keymap("n", "<leader>e", ":Lex 30<cr>", opts)
 
@@ -35,7 +40,9 @@ keymap("n", "<leader>s", ":w<CR>", opts)
 -- keymap("i", "<leader>s", "<C-c>:w<CR>", opts)
 
 -- fast Open explorer
-keymap("n", "<leader>E", ":Explore<Return>", opts)
+keymap("n", "<leader>-", "<CMD>Oil<CR>", opts)
+-- keymap("n", "<leader>ee", ":Explore<CR>", opts)
+-- keymap("n", "<leader>E", ":Explore<Return>", opts)
 
 -- Increment/decrement
 keymap("n", "+", "<C-a>", opts)
@@ -132,7 +139,7 @@ keymap("n", "<leader>fg", "<cmd>lua require'telescope.builtin'.live_grep()<cr>",
 keymap("n", "<leader>te", "<cmd>:tab terminal<cr>", opts)
 
 -- Launch Lazygit via floatterm
-keymap("n", "<leader>lz", "<cmd>FloatermNew --height=0.95 --width=0.95 --wintype=float --name=lazygit lazygit<cr>", opts)
+keymap("n", "<leader>L", "<cmd>FloatermNew --height=0.95 --width=0.95 --wintype=float --name=lazygit lazygit<cr>", opts)
 
 -- launch mocp via floatterm
 keymap("n", "<leader>mz", "<cmd>FloatermNew --height=0.80 --width=0.80 --wintype=float --name=mocp mocp<cr>", opts)
@@ -141,7 +148,10 @@ keymap("n", "<leader>mz", "<cmd>FloatermNew --height=0.80 --width=0.80 --wintype
 keymap("n", "<leader>ac", "<cmd>:set cursorcolumn<cr>", opts)
 
 -- glance keymap 
-keymap("n", "gD", "<CMD>Glance definitions<CR>", opts)
-keymap("n", "gR", "<CMD>Glance references<CR>", opts)
-keymap("n", "gY", "<CMD>Glance type_definitions<CR>", opts)
-keymap("n", "gM", "<CMD>Glance implementations<CR>", opts)
+-- keymap("n", "gD", "<CMD>Glance definitions<CR>", opts)
+-- keymap("n", "gR", "<CMD>Glance references<CR>", opts)
+-- keymap("n", "gY", "<CMD>Glance type_definitions<CR>", opts)
+-- keymap("n", "gM", "<CMD>Glance implementations<CR>", opts)
+--
+
+require('mapping.maphelp')
