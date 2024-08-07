@@ -20,7 +20,7 @@ export PATH=$PATH:$HOME/P/ytdwn/env/bin
 alias nv=nvim
 alias ytdwn='$HOME/P/ytdwn/ytdwn.sh'
 alias rcmdir='less "$HOME/P/command_list/command_dir.md"' 
-alias prodd='$HOME/.config/tmux/prodide.sh'
+alias rhq='$HOME/.config/tmux/prodide.sh'
 
 ## this just for fun tbh
 export mehh='_(:3 _|)_'
