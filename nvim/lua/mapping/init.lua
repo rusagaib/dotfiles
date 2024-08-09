@@ -4,6 +4,7 @@ local term_opts = { silent = true }
 
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
+-- local keymap = vim.keymap
 
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
@@ -20,10 +21,10 @@ vim.g.maplocalleader = " "
 
 -- Normal --
 -- Better window navigation
-keymap("n", "<leader>h", "<C-w>h", opts)
-keymap("n", "<leader>j", "<C-w>j", opts)
-keymap("n", "<leader>k", "<C-w>k", opts)
-keymap("n", "<leader>l", "<C-w>l", opts)
+keymap("n", "<C-h>", "<C-w>h", opts)
+keymap("n", "<C-j>", "<C-w>j", opts)
+keymap("n", "<C-k>", "<C-w>k", opts)
+keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- keymap("n", "<C-h>", "<C-w>h", opts)
 -- keymap("n", "<C-j>", "<C-w>j", opts)
@@ -36,20 +37,25 @@ keymap("n", "<leader>l", "<C-w>l", opts)
 keymap("n", "<leader>r", ":so %<CR>", opts)
 
 -- fast saving with leader and s 
-keymap("n", "<leader>s", ":w<CR>", opts)
+keymap("n", "<leader>S", ":w<CR>", opts)
+-- require('notify')("Recording Started", "info", { title = "Macro" })
+keymap("n", "<leader>s", [[:lua NotifySave()<CR>]], opts)
+-- require('notify')("Recording Started", "info", { title = "Macro" })
+-- keymap("n", "<leader>s", ":echo 'Writes files with leader-s'<CR>", opts)
 -- keymap("i", "<leader>s", "<C-c>:w<CR>", opts)
 
 -- fast Open explorer
 keymap("n", "<leader>-", "<CMD>Oil<CR>", opts)
 -- keymap("n", "<leader>ee", ":Explore<CR>", opts)
--- keymap("n", "<leader>E", ":Explore<Return>", opts)
+-- keymaset("n", "<leader>E", ":Explore<Return>", opts)
 
 -- Increment/decrement
+-- 6 
 keymap("n", "+", "<C-a>", opts)
 keymap("n", "-", "<C-x>", opts)
 
 -- Delete a word backward
--- keymap("n", "dw", "vb'_d", opts)
+-- keymap("n", "dw", "vb_d")
 
 -- Select all 
 keymap("n", "<C-a>", "gg<S-v>G", opts)
@@ -147,11 +153,23 @@ keymap("n", "<leader>mz", "<cmd>FloatermNew --height=0.80 --width=0.80 --wintype
 -- enable cursor culomn
 keymap("n", "<leader>ac", "<cmd>:set cursorcolumn<cr>", opts)
 
--- glance keymap 
+-- glance keymap
 -- keymap("n", "gD", "<CMD>Glance definitions<CR>", opts)
 -- keymap("n", "gR", "<CMD>Glance references<CR>", opts)
 -- keymap("n", "gY", "<CMD>Glance type_definitions<CR>", opts)
 -- keymap("n", "gM", "<CMD>Glance implementations<CR>", opts)
---
+
+keymap('c', '<S-Enter>', [[<cmd>lua require("noice").redirect(vim.fn.getcmdline())<CR>]], { noremap = true, silent = true, desc = "Redirect Cmdline" })
+keymap('n', '<leader>snl', [[<cmd>lua require("noice").cmd("last")<CR>]], { noremap = true, silent = true, desc = "Noice Last Message" })
+keymap('n', '<leader>snh', [[<cmd>lua require("noice").cmd("history")<CR>]], { noremap = true, silent = true, desc = "Noice History" })
+keymap('n', '<leader>sna', [[<cmd>lua require("noice").cmd("all")<CR>]], { noremap = true, silent = true, desc = "Noice All" })
+keymap('n', '<leader>snd', [[<cmd>lua require("noice").cmd("dismiss")<CR>]], { noremap = true, silent = true, desc = "Dismiss All" })
+keymap('i', '<c-f>', [[<cmd>lua if not require("noice.lsp").scroll(4) then return "<c-f>" end<CR>]], { noremap = true, silent = true, expr = true, desc = "Scroll forward" })
+keymap('n', '<c-f>', [[<cmd>lua if not require("noice.lsp").scroll(4) then return "<c-f>" end<CR>]], { noremap = true, silent = true, expr = true, desc = "Scroll forward" })
+keymap('s', '<c-f>', [[<cmd>lua if not require("noice.lsp").scroll(4) then return "<c-f>" end<CR>]], { noremap = true, silent = true, expr = true, desc = "Scroll forward" })
+keymap('i', '<c-b>', [[<cmd>lua if not require("noice.lsp").scroll(-4) then return "<c-b>" end<CR>]], { noremap = true, silent = true, expr = true, desc = "Scroll backward" })
+keymap('n', '<c-b>', [[<cmd>lua if not require("noice.lsp").scroll(-4) then return "<c-b>" end<CR>]], { noremap = true, silent = true, expr = true, desc = "Scroll backward" })
+keymap('s', '<c-b>', [[<cmd>lua if not require("noice.lsp").scroll(-4) then return "<c-b>" end<CR>]], { noremap = true, silent = true, expr = true, desc = "Scroll backward" })
+
 
 require('mapping.maphelp')

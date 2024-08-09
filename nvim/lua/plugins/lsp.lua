@@ -78,6 +78,13 @@ return {
         flags = {
             debounce_text_changes = 150,
         },
+        settings = {
+          intelephense = {
+            files = {
+              associations = { "*.php", "*.phtml", "*.module", "*.inc" }
+            }
+          }
+        },
         -- aklsdjfkasdjf
 		    -- on_attach = function(client)
 			    -- client.server_capabilities.documentFormattingProvider = true

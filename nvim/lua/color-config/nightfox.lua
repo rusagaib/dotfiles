@@ -6,3 +6,10 @@ require('nightfox').setup({
 })
 
 vim.cmd("colorscheme nightfox")
+
+-- vim.cmd [[
+-- highlight DiagnosticErrorBackground guibg=none guifg=none
+-- highlight DiagnosticWarnBackground guibg=none guifg=none
+-- highlight DiagnosticInfoBackground guibg=none guifg=none
+-- highlight DiagnosticHintBackground guibg=none guifg=none
+-- ]]
