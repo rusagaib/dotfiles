@@ -13,7 +13,9 @@ return {
 					"lua_ls",
 					"cssls",
 					"html",
+          "tailwindcss",
 					"emmet_ls",
+          "marksman",
 					"tsserver",     -- ts
           "intelephense", -- php lsp
           "pyright",      -- python lsp
@@ -40,6 +42,7 @@ return {
 					"javascript",
 					"sass",
 					"scss",
+          "php",
 				},
 				init_options = {
 					html = {
@@ -53,6 +56,15 @@ return {
 
 			lspconfig.html.setup({})
 			lspconfig.cssls.setup({})
+			lspconfig.marksman.setup({})
+
+      -- lsp tailwindcss 
+      lspconfig.tailwindcss.setup({
+				capabilities = lsp_capabilities,
+				on_attach = function(client)
+					client.server_capabilities.documentFormattingProvider = true
+				end,
+      })
 
 			-- lsp lua
 			lspconfig.lua_ls.setup({
@@ -127,7 +139,7 @@ return {
 			vim.keymap.set("n", "<A-p>", vim.diagnostic.goto_next, opts)
 			vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
 
-			vim.keymap.set("n", "<C-K>", vim.lsp.buf.signature_help, opts)
+			vim.keymap.set("n", "<leader>k", vim.lsp.buf.signature_help, opts)
 			vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
 			vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
 			vim.keymap.set("n", "<leader>wl", function()

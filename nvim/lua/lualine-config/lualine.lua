@@ -46,7 +46,7 @@ require('lualine').setup {
     --   },
     -- },
     lualine_x = {
-        'encoding', 'filetype',
+        'encoding', 'fileformat', 'filetype',
       {
         require("noice").api.statusline.mode.get,
         cond = require("noice").api.statusline.mode.has,

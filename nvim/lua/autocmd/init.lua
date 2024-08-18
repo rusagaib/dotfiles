@@ -3,8 +3,6 @@ local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
 local remember_folds = augroup('RememberFolds', {})
 
-require('autocmd.scripts')
-
 autocmd('TextYankPost', {
     group = yank_group,
     pattern = '*',

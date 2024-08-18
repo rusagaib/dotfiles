@@ -6,6 +6,9 @@ local term_opts = { silent = true }
 local keymap = vim.api.nvim_set_keymap
 -- local keymap = vim.keymap
 
+-- Load autocomand scripts
+-- local scripts = require('utils')
+
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
@@ -33,13 +36,14 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 
 --keymap("n", "<leader>e", ":Lex 30<cr>", opts)
 
--- Reload config without restart nvim 
+-- Reload config without restart nvim
 keymap("n", "<leader>r", ":so %<CR>", opts)
 
--- fast saving with leader and s 
+-- fast saving with leader and s
 keymap("n", "<leader>S", ":w<CR>", opts)
 -- require('notify')("Recording Started", "info", { title = "Macro" })
-keymap("n", "<leader>s", [[:lua NotifySave()<CR>]], opts)
+-- keymap("n", "<leader>s", [[:lua NotifySave<CR>]], opts)
+keymap("n", "<leader>s", ":lua require('utils').scripts.NotifySave()<CR>", opts)
 -- require('notify')("Recording Started", "info", { title = "Macro" })
 -- keymap("n", "<leader>s", ":echo 'Writes files with leader-s'<CR>", opts)
 -- keymap("i", "<leader>s", "<C-c>:w<CR>", opts)
@@ -50,23 +54,23 @@ keymap("n", "<leader>-", "<CMD>Oil<CR>", opts)
 -- keymaset("n", "<leader>E", ":Explore<Return>", opts)
 
 -- Increment/decrement
--- 6 
+-- 6
 keymap("n", "+", "<C-a>", opts)
 keymap("n", "-", "<C-x>", opts)
 
 -- Delete a word backward
 -- keymap("n", "dw", "vb_d")
 
--- Select all 
+-- Select all
 keymap("n", "<C-a>", "gg<S-v>G", opts)
 
 -- Navigate tab
--- cus idunno there some config mapping with tabprevious with gt 
+-- cus idunno there some config mapping with tabprevious with gt
 -- then let it be~
 -- i just add tt to tabnew
 keymap("n", "tt", ":tabnew<CR>", opts)
 keymap("n", "tn", ":tabNext<CR>", opts)
--- keymap("n", "ty", ":tabclose<CR>", opts)
+keymap("n", "tr", ":tabclose<Return>", opts)
 -- keymap("n", "<leader>td", ":tabclose<Return>", opts)
 
 -- split window
@@ -82,7 +86,14 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
+-- list all buffers
 keymap("n", "<leader>bv", ":buffers<Return>", opts)
+
+-- Window organize
+-- Move the right split to the left
+keymap('n', '<leader>ml', ':wincmd H<CR>', opts)
+-- Move the left split to the right
+keymap('n', '<leader>mr', ':wincmd L<CR>', opts)
 
 -- Move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
@@ -94,7 +105,7 @@ keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 keymap("n", "<leader>bn", ":bd", opts)
 keymap("n", "<C-q>", ":q", opts)
 
--- Clear latest search 
+-- Clear latest search
 keymap("n", "<leader>cl", ":nohlsearch<CR>", opts)
 
 -- Usefull replace using Ragex
@@ -140,8 +151,11 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 -- Telescope mapping
 keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
 keymap("n", "<leader>ff", "<cmd>Telescope fd<cr>", opts)
-keymap("n", "<leader>fe", "<cmd>Telescope file_browser<cr>", opts)
+-- keymap("n", "<leader>fe", "<cmd>Telescope file_browser<cr>", opts)
 keymap("n", "<leader>fg", "<cmd>lua require'telescope.builtin'.live_grep()<cr>", opts)
+-- keymap('n', '<leader>fl', "<cmd>Telescope marks<cr>", opts)
+keymap('n', '<leader>flf', ":lua require('utils').telefilter.lsp_document_symbols_filtered()<CR>", opts)
+keymap('n', '<leader>fla', ":lua require('utils').telefilter.lsp_document_symbols_all()<CR>", opts)
 keymap("n", "<leader>te", "<cmd>:tab terminal<cr>", opts)
 
 -- Launch Lazygit via floatterm
@@ -159,17 +173,30 @@ keymap("n", "<leader>ac", "<cmd>:set cursorcolumn<cr>", opts)
 -- keymap("n", "gY", "<CMD>Glance type_definitions<CR>", opts)
 -- keymap("n", "gM", "<CMD>Glance implementations<CR>", opts)
 
-keymap('c', '<S-Enter>', [[<cmd>lua require("noice").redirect(vim.fn.getcmdline())<CR>]], { noremap = true, silent = true, desc = "Redirect Cmdline" })
-keymap('n', '<leader>snl', [[<cmd>lua require("noice").cmd("last")<CR>]], { noremap = true, silent = true, desc = "Noice Last Message" })
-keymap('n', '<leader>snh', [[<cmd>lua require("noice").cmd("history")<CR>]], { noremap = true, silent = true, desc = "Noice History" })
-keymap('n', '<leader>sna', [[<cmd>lua require("noice").cmd("all")<CR>]], { noremap = true, silent = true, desc = "Noice All" })
-keymap('n', '<leader>snd', [[<cmd>lua require("noice").cmd("dismiss")<CR>]], { noremap = true, silent = true, desc = "Dismiss All" })
-keymap('i', '<c-f>', [[<cmd>lua if not require("noice.lsp").scroll(4) then return "<c-f>" end<CR>]], { noremap = true, silent = true, expr = true, desc = "Scroll forward" })
-keymap('n', '<c-f>', [[<cmd>lua if not require("noice.lsp").scroll(4) then return "<c-f>" end<CR>]], { noremap = true, silent = true, expr = true, desc = "Scroll forward" })
-keymap('s', '<c-f>', [[<cmd>lua if not require("noice.lsp").scroll(4) then return "<c-f>" end<CR>]], { noremap = true, silent = true, expr = true, desc = "Scroll forward" })
-keymap('i', '<c-b>', [[<cmd>lua if not require("noice.lsp").scroll(-4) then return "<c-b>" end<CR>]], { noremap = true, silent = true, expr = true, desc = "Scroll backward" })
-keymap('n', '<c-b>', [[<cmd>lua if not require("noice.lsp").scroll(-4) then return "<c-b>" end<CR>]], { noremap = true, silent = true, expr = true, desc = "Scroll backward" })
-keymap('s', '<c-b>', [[<cmd>lua if not require("noice.lsp").scroll(-4) then return "<c-b>" end<CR>]], { noremap = true, silent = true, expr = true, desc = "Scroll backward" })
+keymap('c', '<S-Enter>', [[<cmd>lua require("noice").redirect(vim.fn.getcmdline())<CR>]],
+  { noremap = true, silent = true, desc = "Redirect Cmdline" })
+keymap('n', '<leader>snl', [[<cmd>lua require("noice").cmd("last")<CR>]],
+  { noremap = true, silent = true, desc = "Noice Last Message" })
+keymap('n', '<leader>snh', [[<cmd>lua require("noice").cmd("history")<CR>]],
+  { noremap = true, silent = true, desc = "Noice History" })
+keymap('n', '<leader>sna', [[<cmd>lua require("noice").cmd("all")<CR>]],
+  { noremap = true, silent = true, desc = "Noice All" })
+keymap('n', '<leader>snd', [[<cmd>lua require("noice").cmd("dismiss")<CR>]],
+  { noremap = true, silent = true, desc = "Dismiss All" })
+keymap('i', '<c-f>', [[<cmd>lua if not require("noice.lsp").scroll(4) then return "<c-f>" end<CR>]],
+  { noremap = true, silent = true, expr = true, desc = "Scroll forward" })
+keymap('n', '<c-f>', [[<cmd>lua if not require("noice.lsp").scroll(4) then return "<c-f>" end<CR>]],
+  { noremap = true, silent = true, expr = true, desc = "Scroll forward" })
+keymap('s', '<c-f>', [[<cmd>lua if not require("noice.lsp").scroll(4) then return "<c-f>" end<CR>]],
+  { noremap = true, silent = true, expr = true, desc = "Scroll forward" })
+keymap('i', '<c-b>', [[<cmd>lua if not require("noice.lsp").scroll(-4) then return "<c-b>" end<CR>]],
+  { noremap = true, silent = true, expr = true, desc = "Scroll backward" })
+keymap('n', '<c-b>', [[<cmd>lua if not require("noice.lsp").scroll(-4) then return "<c-b>" end<CR>]],
+  { noremap = true, silent = true, expr = true, desc = "Scroll backward" })
+keymap('s', '<c-b>', [[<cmd>lua if not require("noice.lsp").scroll(-4) then return "<c-b>" end<CR>]],
+  { noremap = true, silent = true, expr = true, desc = "Scroll backward" })
 
+-- open url under cursors
+keymap("n", "gx", ":lua require('utils').scripts.OpenUrl()<CR>", opts)
 
 require('mapping.maphelp')
