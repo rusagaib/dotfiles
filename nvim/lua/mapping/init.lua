@@ -40,7 +40,8 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<leader>r", ":so %<CR>", opts)
 
 -- fast saving with leader and s
-keymap("n", "<leader>S", ":w<CR>", opts)
+-- keymap("n", "<leader>S", ":w<CR>", opts)
+keymap("n", "<leader>S", ":lua require('utils').scripts.NotifySaved()<CR>", opts)
 -- require('notify')("Recording Started", "info", { title = "Macro" })
 -- keymap("n", "<leader>s", [[:lua NotifySave<CR>]], opts)
 keymap("n", "<leader>s", ":lua require('utils').scripts.NotifySave()<CR>", opts)
