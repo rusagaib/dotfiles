@@ -2,6 +2,9 @@
 local M = {}
 
 -- Define a custom function to filter out variables
+-- using Telescope ui lsp_document_symbols
+-- keymaps on ./lua/mapping/init.lua ? Telescope mapping
+-- display fillterd section
 M.lsp_document_symbols_filtered = function()
     require('telescope.builtin').lsp_document_symbols({
         symbols = {
@@ -23,6 +26,7 @@ M.lsp_document_symbols_filtered = function()
     })
 end
 
+-- display all section
 M.lsp_document_symbols_all = function()
     require('telescope.builtin').lsp_document_symbols({
         symbols = {
