@@ -39,10 +39,12 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 -- Reload config without restart nvim
 keymap("n", "<leader>r", ":so %<CR>", opts)
 
--- fast saving with leader and s
+-- fast saving with leader and S
 -- keymap("n", "<leader>S", ":w<CR>", opts)
 keymap("n", "<leader>S", ":lua require('utils').scripts.NotifySaved()<CR>", opts)
 -- require('notify')("Recording Started", "info", { title = "Macro" })
+
+-- notify for right saved ising <leader>S not s tho..
 -- keymap("n", "<leader>s", [[:lua NotifySave<CR>]], opts)
 keymap("n", "<leader>s", ":lua require('utils').scripts.NotifySave()<CR>", opts)
 -- require('notify')("Recording Started", "info", { title = "Macro" })
@@ -127,6 +129,11 @@ keymap("v", ">", ">gv", opts)
 keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
+
+
+-- keymap("n", "<leader>S", ":lua require('utils').scripts.NotifySaved()<CR>", opts)
+-- Search & replace 
+keymap('v', '<leader>sr', ":lua require('utils').scripts.FNReplaceWords(vim.fn.input('Query: '), vim.fn.input('New Word: '))<CR>", opts)
 
 -- Visual Block --
 -- Move text up and down

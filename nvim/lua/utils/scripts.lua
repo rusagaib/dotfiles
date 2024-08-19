@@ -15,6 +15,31 @@ M.NotifySaved = function()
   vim.cmd('write')
 end
 
+-- find and replace word with escaped symbols
+-- same as using v-line block line -> : -> s/\query/\g -> enter
+M.FNReplaceWords = function(query, new_word)
+    -- Get the current visual selection range
+    local start_line = vim.fn.line("'<")
+    local end_line = vim.fn.line("'>")
+
+    -- Escape special characters for Vim regex
+    local escaped_query = vim.fn.escape(query, "\\/")
+    local escaped_new_word = vim.fn.escape(new_word, "\\")
+
+    -- Construct the substitution command without word boundaries
+    local command = string.format("%d,%ds/%s/%s/g", start_line, end_line, escaped_query, escaped_new_word)
+
+    -- Print the command for debugging
+    -- print("Running command:", command)
+
+    -- Perform the substitution
+    vim.cmd(command)
+
+    -- Display a notification using Noice
+    local message = string.format("Replaced '%s' with '%s' from line %d to %d", query, new_word, start_line, end_line)
+    require("notify")(message, "info", { title = "Replace Command" })
+end
+
 -- open URL under cursor in default browser
 M.OpenUrl = function()
   local url = vim.fn.expand('<cWORD>')  -- Get the word under the cursor
