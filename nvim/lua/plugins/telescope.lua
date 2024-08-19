@@ -9,10 +9,12 @@ return {
           buffers = {
             mappings = {
               i = {
-                ["<C-x>"] = actions.delete_buffer + actions.move_to_top, -- Delete buffers in insert mode
+                ["<C-x>"] = actions.delete_buffer, -- Delete buffers in insert mode
+                -- ["<C-x>"] = actions.delete_buffer + actions.move_to_top, -- Delete buffers in insert mode
               },
               n = {
-                ["<C-x>"] = actions.delete_buffer + actions.move_to_top, -- Delete buffers in normal mode
+                ["<C-x>"] = actions.delete_buffer, -- Delete buffers in normal mode
+                -- ["<C-x>"] = actions.delete_buffer + actions.move_to_top, -- Delete buffers in normal mode
               },
             },
           },
