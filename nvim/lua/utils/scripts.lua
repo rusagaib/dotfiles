@@ -57,4 +57,29 @@ M.OpenUrl = function()
   end
 end
 
+M.ShowCodeAction = function()
+  local noice = require('noice')
+  vim.lsp.buf.code_action({
+    callback = function(actions)
+      if actions and #actions > 0 then
+        -- Customize how you want to display actions with noice
+        noice.notify({
+          title = 'Code Actions',
+          message = table.concat(vim.tbl_map(function(action)
+            return action.title
+          end, actions), '\n'),
+          level = 'info',  -- You can use 'warn' or 'error' depending on your preference
+        })
+      else
+        noice.notify({
+          title = 'No Code Actions',
+          message = 'No available code actions for the current cursor position.',
+          level = 'info',
+        })
+      end
+    end
+  })
+end
+
+
 return M

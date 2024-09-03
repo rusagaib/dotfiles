@@ -6,17 +6,16 @@ return {
     "rcarriga/nvim-notify",
   },
   config = function()
-    require('noice').setup({
+    require("noice").setup({
       -- default presets
       presets = {
-        bottom_search = true, -- use a classic bottom cmdline for search
-        command_palette = true, -- position the cmdline and popupmenu together
+        bottom_search = true,     -- use a classic bottom cmdline for search
+        command_palette = true,   -- position the cmdline and popupmenu together
         long_message_to_split = true, -- long messages will be sent to a split
-        inc_rename = true, -- enables an input dialog for inc-rename.nvim
-        lsp_doc_border = false, -- add a border to hover docs and signature help
+        inc_rename = true,        -- enables an input dialog for inc-rename.nvim
+        lsp_doc_border = true,    -- add a border to hover docs and signature help
       },
       lsp = {
-        -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
           ["vim.lsp.util.stylize_markdown"] = true,
@@ -36,6 +35,20 @@ return {
           },
           view = "mini",
         },
+        {
+          filter = {
+            event = "lsp",
+            kind = "hover",
+          },
+          view = "hover",
+        },
+        {
+          filter = {
+            event = "lsp",
+            kind = "code_action",
+          },
+          view = "cmdline_popup",
+        },
       },
       views = {
         -- Clean cmdline_popup + palette
@@ -45,8 +58,8 @@ return {
             col = "50%",
           },
           border = {
-            style = "rounded",     -- none, rounded
-            padding = {0,1}, -- {2,3}, {0,1}
+            style = "rounded", -- none, rounded
+            padding = { 0, 1 }, -- {2,3}, {0,1}
           },
           size = {
             min_width = 60,
@@ -69,8 +82,8 @@ return {
             max_height = 15,
           },
           border = {
-            style = "rounded",     -- none, rounded
-            padding = { 0, 1 },    -- {0,3} {0,1}
+            style = "rounded", -- none, rounded
+            padding = { 0, 1 }, -- {0,3} {0,1}
           },
           win_options = {
             winhighlight = { NormalFloat = "NormalFloat", FloatBorder = "NoiceCmdlinePopupBorder" },
@@ -139,15 +152,14 @@ return {
     -- Auto commands for recording start/stop
     vim.api.nvim_create_autocmd("RecordingEnter", {
       callback = function()
-        require('notify')("Recording Started", "info", { title = "Macro" })
+        require("notify")("Recording Started", "info", { title = "Macro" })
       end,
     })
 
     vim.api.nvim_create_autocmd("RecordingLeave", {
       callback = function()
-        require('notify')("Recording Stopped", "warn", { title = "Macro" })
+        require("notify")("Recording Stopped", "warn", { title = "Macro" })
       end,
     })
-
-  end
+  end,
 }

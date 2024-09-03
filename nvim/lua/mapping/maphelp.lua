@@ -27,3 +27,12 @@ end, {})
 
 -- You can now use :ShowKeymaps to print all key mappings
 
+-- Basic key to move around: 
+-- [{ = move to open brackets
+-- ]} = move to closed brackets
+-- f<key-word> = find word inline 
+-- navigate ; = next
+-- navigate , = previous
+-- files search /<key-word> or ?<key-word> = find <key-word> 
+-- navigate n = next
+-- navigate N = previous

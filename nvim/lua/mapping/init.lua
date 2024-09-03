@@ -94,9 +94,9 @@ keymap("n", "<leader>bv", ":buffers<Return>", opts)
 
 -- Window organize
 -- Move the right split to the left
-keymap('n', '<leader>ml', ':wincmd H<CR>', opts)
+keymap("n", "<leader>ml", ":wincmd H<CR>", opts)
 -- Move the left split to the right
-keymap('n', '<leader>mr', ':wincmd L<CR>', opts)
+keymap("n", "<leader>mr", ":wincmd L<CR>", opts)
 
 -- Move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
@@ -115,7 +115,6 @@ keymap("n", "<leader>cl", ":nohlsearch<CR>", opts)
 -- change single quote to double quote
 -- keymap("v", "<leader>gr", ":s/\%V'\%V/"/g", opts)
 
-
 -- Insert --
 -- Press jk fast to enter
 -- keymap("i", "jk", "<ESC>", opts)
@@ -130,10 +129,14 @@ keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
 
-
 -- keymap("n", "<leader>S", ":lua require('utils').scripts.NotifySaved()<CR>", opts)
--- Search & replace 
-keymap('v', '<leader>sr', ":lua require('utils').scripts.FNReplaceWords(vim.fn.input('Query: '), vim.fn.input('New Word: '))<CR>", opts)
+-- Search & replace
+keymap(
+  "v",
+  "<leader>sr",
+  ":lua require('utils').scripts.FNReplaceWords(vim.fn.input('Query: '), vim.fn.input('New Word: '))<CR>",
+  opts
+)
 
 -- Visual Block --
 -- Move text up and down
@@ -159,11 +162,13 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 -- Telescope mapping
 keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
 keymap("n", "<leader>ff", "<cmd>Telescope fd<cr>", opts)
--- keymap("n", "<leader>fe", "<cmd>Telescope file_browser<cr>", opts)
+keymap("n", "<leader>fe", "<cmd>Telescope file_browser<cr>", opts)
 keymap("n", "<leader>fg", "<cmd>lua require'telescope.builtin'.live_grep()<cr>", opts)
 -- keymap('n', '<leader>fl', "<cmd>Telescope marks<cr>", opts)
-keymap('n', '<leader>flf', ":lua require('utils').telefilter.lsp_document_symbols_filtered()<CR>", opts)
-keymap('n', '<leader>fla', ":lua require('utils').telefilter.lsp_document_symbols_all()<CR>", opts)
+-- -- Code Action using Custom scripts
+-- keymap('n', '<leader>ca', ":lua require('utils').scripts.ShowCodeAction()<CR>", opts)
+keymap("n", "<leader>flf", ":lua require('utils').telefilter.lsp_document_symbols_filtered()<CR>", opts)
+keymap("n", "<leader>fla", ":lua require('utils').telefilter.lsp_document_symbols_all()<CR>", opts)
 keymap("n", "<leader>te", "<cmd>:tab terminal<cr>", opts)
 
 -- Launch Lazygit via floatterm
@@ -181,30 +186,88 @@ keymap("n", "<leader>ac", "<cmd>:set cursorcolumn<cr>", opts)
 -- keymap("n", "gY", "<CMD>Glance type_definitions<CR>", opts)
 -- keymap("n", "gM", "<CMD>Glance implementations<CR>", opts)
 
-keymap('c', '<S-Enter>', [[<cmd>lua require("noice").redirect(vim.fn.getcmdline())<CR>]],
-  { noremap = true, silent = true, desc = "Redirect Cmdline" })
-keymap('n', '<leader>snl', [[<cmd>lua require("noice").cmd("last")<CR>]],
-  { noremap = true, silent = true, desc = "Noice Last Message" })
-keymap('n', '<leader>snh', [[<cmd>lua require("noice").cmd("history")<CR>]],
-  { noremap = true, silent = true, desc = "Noice History" })
-keymap('n', '<leader>sna', [[<cmd>lua require("noice").cmd("all")<CR>]],
-  { noremap = true, silent = true, desc = "Noice All" })
-keymap('n', '<leader>snd', [[<cmd>lua require("noice").cmd("dismiss")<CR>]],
-  { noremap = true, silent = true, desc = "Dismiss All" })
-keymap('i', '<c-f>', [[<cmd>lua if not require("noice.lsp").scroll(4) then return "<c-f>" end<CR>]],
-  { noremap = true, silent = true, expr = true, desc = "Scroll forward" })
-keymap('n', '<c-f>', [[<cmd>lua if not require("noice.lsp").scroll(4) then return "<c-f>" end<CR>]],
-  { noremap = true, silent = true, expr = true, desc = "Scroll forward" })
-keymap('s', '<c-f>', [[<cmd>lua if not require("noice.lsp").scroll(4) then return "<c-f>" end<CR>]],
-  { noremap = true, silent = true, expr = true, desc = "Scroll forward" })
-keymap('i', '<c-b>', [[<cmd>lua if not require("noice.lsp").scroll(-4) then return "<c-b>" end<CR>]],
-  { noremap = true, silent = true, expr = true, desc = "Scroll backward" })
-keymap('n', '<c-b>', [[<cmd>lua if not require("noice.lsp").scroll(-4) then return "<c-b>" end<CR>]],
-  { noremap = true, silent = true, expr = true, desc = "Scroll backward" })
-keymap('s', '<c-b>', [[<cmd>lua if not require("noice.lsp").scroll(-4) then return "<c-b>" end<CR>]],
-  { noremap = true, silent = true, expr = true, desc = "Scroll backward" })
+keymap(
+  "c",
+  "<S-Enter>",
+  [[<cmd>lua require("noice").redirect(vim.fn.getcmdline())<CR>]],
+  { noremap = true, silent = true, desc = "Redirect Cmdline" }
+)
+keymap(
+  "n",
+  "<leader>snl",
+  [[<cmd>lua require("noice").cmd("last")<CR>]],
+  { noremap = true, silent = true, desc = "Noice Last Message" }
+)
+keymap(
+  "n",
+  "<leader>snh",
+  [[<cmd>lua require("noice").cmd("history")<CR>]],
+  { noremap = true, silent = true, desc = "Noice History" }
+)
+keymap(
+  "n",
+  "<leader>sna",
+  [[<cmd>lua require("noice").cmd("all")<CR>]],
+  { noremap = true, silent = true, desc = "Noice All" }
+)
+keymap(
+  "n",
+  "<leader>snd",
+  [[<cmd>lua require("noice").cmd("dismiss")<CR>]],
+  { noremap = true, silent = true, desc = "Dismiss All" }
+)
+keymap(
+  "i",
+  "<c-f>",
+  [[<cmd>lua if not require("noice.lsp").scroll(4) then return "<c-f>" end<CR>]],
+  { noremap = true, silent = true, expr = true, desc = "Scroll forward" }
+)
+keymap(
+  "n",
+  "<c-f>",
+  [[<cmd>lua if not require("noice.lsp").scroll(4) then return "<c-f>" end<CR>]],
+  { noremap = true, silent = true, expr = true, desc = "Scroll forward" }
+)
+keymap(
+  "s",
+  "<c-f>",
+  [[<cmd>lua if not require("noice.lsp").scroll(4) then return "<c-f>" end<CR>]],
+  { noremap = true, silent = true, expr = true, desc = "Scroll forward" }
+)
+keymap(
+  "i",
+  "<c-b>",
+  [[<cmd>lua if not require("noice.lsp").scroll(-4) then return "<c-b>" end<CR>]],
+  { noremap = true, silent = true, expr = true, desc = "Scroll backward" }
+)
+keymap(
+  "n",
+  "<c-b>",
+  [[<cmd>lua if not require("noice.lsp").scroll(-4) then return "<c-b>" end<CR>]],
+  { noremap = true, silent = true, expr = true, desc = "Scroll backward" }
+)
+keymap(
+  "s",
+  "<c-b>",
+  [[<cmd>lua if not require("noice.lsp").scroll(-4) then return "<c-b>" end<CR>]],
+  { noremap = true, silent = true, expr = true, desc = "Scroll backward" }
+)
 
 -- open url under cursors
 keymap("n", "gx", ":lua require('utils').scripts.OpenUrl()<CR>", opts)
 
-require('mapping.maphelp')
+-- codesnap
+keymap(
+  "v",
+  "<leader>mp",
+  "<cmd>CodeSnap<cr>",
+  { noremap = true, silent = true, desc = "Save selected code snapshot into clipboard" }
+)
+keymap(
+  "v",
+  "<leader>mpd",
+  "<cmd>CodeSnapSave<cr>",
+  { noremap = true, silent = true, desc = "Save selected code snapshot in ~/Pictures" }
+)
+
+require("mapping.maphelp")
