@@ -22,7 +22,25 @@ require('lualine').setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
+    -- show only filename
+    -- lualine_c = {'filename'},
+    -- show full-path of directories
+    lualine_c = {
+      function()
+        -- Get the current buffer number
+        local buf = vim.fn.bufnr()
+        -- Check if the buffer is active
+        if buf == vim.fn.winbufnr(0) then
+          -- Get the relative file path from the current working directory
+          local relative_path = vim.fn.fnamemodify(vim.fn.expand('%'), ':.')
+          -- Return the relative path
+          return './' .. relative_path
+        else
+          -- Just show the filename if not active buffer
+          return vim.fn.expand('%:t')
+        end
+      end
+    },
     -- lualine_x = {'encoding', 'fileformat', 'filetype'},
     -- lualine_x = {
     --   {

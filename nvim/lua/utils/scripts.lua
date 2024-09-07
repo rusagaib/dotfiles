@@ -57,29 +57,53 @@ M.OpenUrl = function()
   end
 end
 
-M.ShowCodeAction = function()
-  local noice = require('noice')
-  vim.lsp.buf.code_action({
-    callback = function(actions)
-      if actions and #actions > 0 then
-        -- Customize how you want to display actions with noice
-        noice.notify({
-          title = 'Code Actions',
-          message = table.concat(vim.tbl_map(function(action)
-            return action.title
-          end, actions), '\n'),
-          level = 'info',  -- You can use 'warn' or 'error' depending on your preference
-        })
-      else
-        noice.notify({
-          title = 'No Code Actions',
-          message = 'No available code actions for the current cursor position.',
-          level = 'info',
-        })
+M.ToggleEmmetLs = function ()
+  local clients = vim.lsp.get_active_clients()
+  local emmet_ls_running = false
+
+  for _, client in pairs(clients) do
+    if client.name == "emmet_ls" then
+      emmet_ls_running = true
+      break
+    end
+  end
+
+  if emmet_ls_running then
+    for _, client in pairs(clients) do
+      if client.name == "emmet_ls" then
+        vim.lsp.stop_client(client.id)
+        require('notify')("emmet_ls stopped!", "warn", { title = "Lsp" })
+        break
       end
     end
-  })
+  else
+    vim.cmd("LspStart emmet_ls")
+    require('notify')("emmet_ls started!", "info", { title = "Lsp" })
+  end
 end
+-- M.ShowCodeAction = function()
+--   local noice = require('noice')
+--   vim.lsp.buf.code_action({
+--     callback = function(actions)
+--       if actions and #actions > 0 then
+--         -- Customize how you want to display actions with noice
+--         noice.notify({
+--           title = 'Code Actions',
+--           message = table.concat(vim.tbl_map(function(action)
+--             return action.title
+--           end, actions), '\n'),
+--           level = 'info',  -- You can use 'warn' or 'error' depending on your preference
+--         })
+--       else
+--         noice.notify({
+--           title = 'No Code Actions',
+--           message = 'No available code actions for the current cursor position.',
+--           level = 'info',
+--         })
+--       end
+--     end
+--   })
+-- end
 
 
 return M

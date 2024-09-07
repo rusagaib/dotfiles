@@ -51,6 +51,7 @@ return {
         },
       },
       views = {
+        -- Clean cmdline_popup + palette
         cmdline_popup = {
           position = {
             row = 15,
@@ -113,6 +114,7 @@ return {
           position = {
             row = -1,
             col = "100%",
+            -- col = 0,
           },
           size = "auto",
           border = {
@@ -131,6 +133,12 @@ return {
             },
           },
         },
+        -- mini = {  -- Add or update this view configuration
+        --   win_options = {
+        --     winhighlight = { Normal = "Normal", FloatBorder = "NoiceMiniBorder" },
+        --     winblend = 0, -- Adjust to your preference; higher values for more transparency
+        --   },
+        -- },
       },
     })
 
@@ -155,4 +163,3 @@ return {
     })
   end,
 }
-

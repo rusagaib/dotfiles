@@ -270,4 +270,9 @@ keymap(
   { noremap = true, silent = true, desc = "Save selected code snapshot in ~/Pictures" }
 )
 
+-- toggle emmet_lsp
+
+vim.api.nvim_set_keymap('n', '<leader>lspe', ":lua require('utils').scripts.ToggleEmmetLs()<CR>", { noremap = true, silent = true })
+
+
 require("mapping.maphelp")

@@ -76,4 +76,30 @@ vim.cmd "let g:netrw_banner = 0"
 -- netrw_liststyle default
 vim.cmd "let g:netrw_liststyle = 0"
 
+-- Function to display only filenames in the tabline with a symbol
+function _G.custom_tabline()
+  local s = ''
+  local symbol = "⎈" -- Change this to any symbol you prefer
 
+  for i = 1, vim.fn.tabpagenr('$') do
+    local winnr = vim.fn.tabpagewinnr(i)
+    local bufnr = vim.fn.tabpagebuflist(i)[winnr]
+    local filename = vim.fn.fnamemodify(vim.fn.bufname(bufnr), ':t')
+    local tabnr = vim.fn.tabpagenr()
+
+    -- Highlight the current tab and add the symbol
+    if i == tabnr then
+      s = s .. '%' .. i .. 'T' .. '%#TabLineSel# ' .. symbol .. ' ' .. filename .. ' %#TabLine#'
+    else
+      s = s .. '%' .. i .. 'T' .. symbol .. ' ' .. filename .. ' '
+    end
+  end
+
+  -- Add a new tab button with the symbol
+  s = s .. '%#TabLineFill#%T%#TabLine#'
+
+  return s
+end
+
+-- Set the custom tabline
+vim.opt.tabline = '%!v:lua.custom_tabline()'
