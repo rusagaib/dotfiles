@@ -13,11 +13,35 @@ local rep = require("luasnip.extras").rep
 
 -- spec snippet
 ls.add_snippets("php", {
-  s("pfn", {
+
+  -- public function
+  s("pubfn", {
     t("public function "), i(1, "functionName"), t("("), i(2), t({") {", "\t"}),
     i(0),
     t({"", "}"}),
   }),
+
+  -- public static function
+  s("pubsfn", {
+    t("public static function "), i(1, "functionName"), t("("), i(2), t({") {", "\t"}),
+    i(0),
+    t({"", "}"}),
+  }),
+
+  -- private function
+  s("prfn", {
+    t("private function "), i(1, "functionName"), t("("), i(2), t({") {", "\t"}),
+    i(0),
+    t({"", "}"}),
+  }),
+
+  -- private static function
+  s("prsfn", {
+    t("private static function "), i(1, "functionName"), t("("), i(2), t({") {", "\t"}),
+    i(0),
+    t({"", "}"}),
+  }),
+
 -- end add_snippets
 },{
     -- adding key snippets for it's filetype
