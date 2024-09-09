@@ -41,7 +41,13 @@ local options = {
   -- colorcolumn = "80",
   -- colorcolumn = "120",
 
+  -- Prevent automatic folding
+  -- foldenable = false,                       -- Disable folding by default
+  -- foldlevel = 99,                           -- Start unfolded
+  -- foldlevelstart = 99,                      -- Ensure all folds are open when starting
+  -- foldmethod = "manual",                    -- Use manual folding to avoid auto-folding
 }
+
 --vim.g.loaded_netrw = 1
 --vim.g.loaded_netrwPlugin = 0
 --vim.opt.fillchars = vim.opt.fillchars + "vertleft: "
