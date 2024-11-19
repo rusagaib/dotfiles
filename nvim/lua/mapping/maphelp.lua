@@ -36,3 +36,8 @@ end, {})
 -- files search /<key-word> or ?<key-word> = find <key-word> 
 -- navigate n = next
 -- navigate N = previous
+
+-- za togle open or close code folding
+-- zK togle open or close code folding
+-- zR open all code folding
+-- zM close all code Folding

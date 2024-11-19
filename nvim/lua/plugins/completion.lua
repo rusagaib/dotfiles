@@ -19,6 +19,9 @@ return {
     },
     {
         "hrsh7th/nvim-cmp",
+        dependencies = {
+          { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
+        },
         config = function()
             local cmp = require("cmp")
             require("luasnip.loaders.from_vscode").lazy_load()
@@ -100,6 +103,15 @@ return {
                 }),
             })
 
+        end,
+        opts = function(_, opts)
+          opts.formatting = opts.formatting or {}
+          -- original LazyVim kind icon formatter
+          local format_kinds = opts.formatting.format
+          opts.formatting.format = function(entry, item)
+            format_kinds(entry, item) -- add icons
+            return require("tailwindcss-colorizer-cmp").formatter(entry, item)
+          end
         end,
     },
     {
