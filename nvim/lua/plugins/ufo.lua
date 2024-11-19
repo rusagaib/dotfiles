@@ -9,11 +9,6 @@ return {
 			end,
 		})
 
-		vim.o.foldcolumn = "1" -- '0' is not bad
-		vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-		vim.o.foldlevelstart = 99
-		vim.o.foldenable = true
-
 		-- Key mappings for ufo.nvim
 		vim.keymap.set("n", "zR", require("ufo").openAllFolds) -- Open all folds
 		vim.keymap.set("n", "zM", require("ufo").closeAllFolds) -- Close all folds
@@ -22,9 +17,20 @@ return {
 		vim.keymap.set("n", "zK", function()
 			local windid = require("ufo").peekFoldedLinesUnderCursor()
 			if not windid then
-				vim.lsp.buf.hover()
+				-- vim.lsp.buf.hover()
 			end
 		end, { desc = "Peek Fold" })
+
+		-- Persist fold state after entering Normal mode from Insert mode
+		vim.api.nvim_create_autocmd({ "InsertLeave", "BufWinEnter", "WinEnter" }, {
+		-- vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
+			pattern = "*",
+			callback = function()
+				vim.opt.foldenable = true -- Keep folding enabled when switching modes
+				vim.opt.foldlevel = 99 -- Ensure folds remain open
+				vim.opt.foldmethod = "expr" -- Keep fold method as 'expr' (or 'manual')
+			end,
+		})
 
 		-- end of config(
 	end,

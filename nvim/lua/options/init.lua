@@ -42,10 +42,11 @@ local options = {
   -- colorcolumn = "120",
 
   -- Prevent automatic folding
-  -- foldenable = false,                       -- Disable folding by default
-  -- foldlevel = 99,                           -- Start unfolded
-  -- foldlevelstart = 99,                      -- Ensure all folds are open when starting
-  -- foldmethod = "manual",                    -- Use manual folding to avoid auto-folding
+  foldenable = true,                    -- Disable folding by default
+  foldcolumn = "1",                         -- '0' is not bad
+  foldlevel = 99,                           -- Start unfolded
+  foldlevelstart = 99,                      -- Ensure all folds are open when starting
+  foldmethod = "expr",                   -- Use manual folding to avoid auto-folding, "expr", "manual"
 }
 
 --vim.g.loaded_netrw = 1
@@ -82,10 +83,13 @@ vim.cmd "let g:netrw_banner = 0"
 -- netrw_liststyle default
 vim.cmd "let g:netrw_liststyle = 0"
 
--- Function to display only filenames in the tabline with a symbol
+-- Function to display filenames in the tabline with a black circle for the active tab
+-- and a white circle for the inactive tabs.
 function _G.custom_tabline()
   local s = ''
-  local symbol = "⎈" -- Change this to any symbol you prefer
+  local active_symbol = "»"
+  local inactive_symbol = ""
+  local modified_symbol = "●"
 
   for i = 1, vim.fn.tabpagenr('$') do
     local winnr = vim.fn.tabpagewinnr(i)
@@ -93,15 +97,21 @@ function _G.custom_tabline()
     local filename = vim.fn.fnamemodify(vim.fn.bufname(bufnr), ':t')
     local tabnr = vim.fn.tabpagenr()
 
-    -- Highlight the current tab and add the symbol
+    -- Check if the buffer is modified and append the 'M' symbol if so
+    if vim.bo[bufnr].modified then
+      filename = filename .. ' ' .. modified_symbol
+      -- filename = filename .. ' ' .. modified_symbol
+    end
+
+    -- Highlight the current tab with a black circle and others with a white circle
     if i == tabnr then
-      s = s .. '%' .. i .. 'T' .. '%#TabLineSel# ' .. symbol .. ' ' .. filename .. ' %#TabLine#'
+      s = s .. '%' .. i .. 'T' .. '%#TabLineSel# ' .. active_symbol .. ' ' .. filename .. ' %#TabLine#'
     else
-      s = s .. '%' .. i .. 'T' .. symbol .. ' ' .. filename .. ' '
+      s = s .. '%' .. i .. 'T' .. inactive_symbol .. ' ' .. filename .. ' '
     end
   end
 
-  -- Add a new tab button with the symbol
+  -- Add a new tab button with the inactive symbol
   s = s .. '%#TabLineFill#%T%#TabLine#'
 
   return s

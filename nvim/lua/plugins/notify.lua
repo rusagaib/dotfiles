@@ -5,12 +5,12 @@ return {
       background_colour = "#000000",
       -- Ensure code action notifications are handled
       -- notify = function(_, opts)
-      --   if opts.title and opts.title:match("LSP") then
-      --     -- Customize as needed
-      --     return true
-      --   end
-      --   return true
-      -- end,
+      notify = function(msg, opts)
+        if msg == "No information available" then
+          return
+        end
+        require("notify").notify(msg, opts)
+      end,
     })
   end,
 }
