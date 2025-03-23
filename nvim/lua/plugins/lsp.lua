@@ -117,6 +117,7 @@ return {
 					intelephense = {
 						files = {
 							associations = { "*.php", "*.phtml", "*.module", "*.inc" },
+              maxSize = 1000000,
 						},
 					},
 				},
