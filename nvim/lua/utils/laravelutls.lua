@@ -1,10 +1,10 @@
 local M = {}
 
-M.PickInertiaPage = function()
-  local actions = require("telescope.actions")
-  local action_state = require("telescope.actions.state")
-  local telescope = require("telescope.builtin")
+local actions = require("telescope.actions")
+local action_state = require("telescope.actions.state")
+local telescope = require("telescope.builtin")
 
+M.PickInertiaPage = function()
   telescope.find_files({
     prompt_title = "Search Inertia (Vue) Pages",
     cwd = "./resources/js/pages/",                                -- Search Path dir
@@ -32,10 +32,6 @@ M.PickInertiaPage = function()
 end
 
 M.PickViewPage = function()
-  local actions = require("telescope.actions")
-  local action_state = require("telescope.actions.state")
-  local telescope = require("telescope.builtin")
-
   telescope.find_files({
     prompt_title = "Search Blade Pages",
     cwd = "./resources/views/",                                         -- Search Path dir
@@ -63,10 +59,6 @@ M.PickViewPage = function()
 end
 
 M.SearchInertiaResources = function()
-  -- local actions = require('telescope.actions')
-  -- local action_state = require('telescope.actions.state')
-  local telescope = require("telescope.builtin")
-
   telescope.find_files({
     prompt_title = "Search Inertia resources UI",
     cwd = "./resources/js/",                                      -- Hanya cari di folder ini
@@ -75,10 +67,6 @@ M.SearchInertiaResources = function()
 end
 
 M.SearchRouteNames = function()
-  local actions = require("telescope.actions")
-  local action_state = require("telescope.actions.state")
-  local telescope = require("telescope.builtin")
-
   telescope.grep_string({
     prompt_title = "Search Route Names",
     cwd = "./routes/", -- Cari hanya di folder routes
@@ -107,10 +95,6 @@ M.SearchRouteNames = function()
 end
 
 M.SpatiePermisionPicker = function()
-  local actions = require("telescope.actions")
-  local action_state = require("telescope.actions.state")
-  local telescope = require("telescope.builtin")
-
   telescope.grep_string({
     prompt_title = "Spatie Permissions Picker",
     search = "Permission::create(", -- Cari permission di RoleSeeder.php
