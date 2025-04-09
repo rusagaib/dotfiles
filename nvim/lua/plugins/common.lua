@@ -24,13 +24,12 @@ return {
 	-- adding float term for lazygit
 	"voldikss/vim-floaterm",
 
-	-- -- adding swagger-preview
-	-- "rusagaib/oas-preview.nvim",
+	-- adding swagger-preview
+	"rusagaib/oas-preview.nvim",
 	{
 		"rusagaib/oas-preview.nvim",
 		config = function()
 			require("oas-preview").setup({
-				api_route = "http://127.0.0.1",
 				port = "1111", -- up-to-you
 				ui = "swagger", -- "swagger", "redoc", "stoplight"
 				-- auto_open_url = true, -- false to disable it, default is true

@@ -31,6 +31,10 @@ return {
 			-- local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
 			-- lsp_capabilities.textDocument.completion.completionItem.snippetSupport = true
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
+      }
 
 			lspconfig.emmet_ls.setup({
 				capabilities = capabilities,
@@ -42,6 +46,7 @@ return {
 					"scss",
 					"php",
 					"vue",
+          "yaml",
 				},
 				init_options = {
 					html = {
@@ -73,7 +78,7 @@ return {
 				end,
 			})
 
-			-- -- lsp javascript & typescript (vue,svelte)
+			-- lsp javascript & typescript (vue,svelte)
 			lspconfig.tsserver.setup({
 				root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", ".git"),
 				init_options = {
@@ -133,7 +138,7 @@ return {
 				-- }
 				-- }
 			})
-			--
+
 			-- lsp python
 			lspconfig.pyright.setup({
 				capabilities = capabilities,
@@ -141,6 +146,7 @@ return {
 					client.server_capabilities.documentFormattingProvider = true
 				end,
 			})
+
 			-- lsp go
 			lspconfig.gopls.setup({
 				capabilities = capabilities,
@@ -149,10 +155,12 @@ return {
 				end,
 			})
 
-			-- dart flutter
-			lspconfig.dartls.setup({
+			-- lsp yaml
+			lspconfig.yamlls.setup({
 				capabilities = capabilities,
-				cmd = { "dart", "language-server", "--protocol=lsp" },
+				on_attach = function(client)
+					client.server_capabilities.documentFormattingProvider = true
+				end,
 			})
 
 			local opts = { noremap = true, silent = true }
