@@ -316,5 +316,13 @@ keymap(
   [[<Esc>:lua require('utils').laravelutls.SpatiePermisionPicker()<CR>]],
   { noremap = true, silent = true, desc="[laravelutls] Laravel spatie Permission Picker (lpp)" }
 )
+-- Laravel Named Method Picker (lnm)
+-- M.LaravelMethodPicker = function()
+keymap(
+  'n',
+  '<leader>lnm',
+  [[<Esc>:lua require('utils').laravelutls.LaravelMethodPicker()<CR>]],
+  { noremap = true, silent = true, desc="[laravelutls] Laravel Named Method Picker (lnm)" }
+)
 
 require("mapping.maphelp")

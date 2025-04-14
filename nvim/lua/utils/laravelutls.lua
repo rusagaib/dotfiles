@@ -3,6 +3,10 @@ local M = {}
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 local telescope = require("telescope.builtin")
+local Path = require("plenary.path")
+local pickers = require("telescope.pickers")
+local finders = require("telescope.finders")
+local conf = require("telescope.config").values
 
 M.PickInertiaPage = function()
   telescope.find_files({
@@ -125,5 +129,78 @@ M.SpatiePermisionPicker = function()
     end,
   })
 end
+
+M.LaravelMethodPicker = function()
+  local row = vim.api.nvim_win_get_cursor(0)[1]
+  local line = vim.api.nvim_buf_get_lines(0, row - 1, row, false)[1]
+
+  local get_controller_path = function(controller_name)
+    local controller_file = controller_name:gsub("\\", "/"):gsub("^App/", "") .. ".php"
+    local base_path = vim.fn.getcwd()
+    return base_path .. "/app/" .. controller_file
+  end
+
+  local extract_functions = function(file_path)
+    local funcs = {}
+    for line in io.lines(file_path) do
+      local name = line:match("^%s*public function ([%w_]+)")
+      if name then
+        table.insert(funcs, name)
+      end
+    end
+    return funcs
+  end
+
+  local extract_controller_from_line = function(current_line, current_row)
+    -- Find controller name from current line 
+    local short_name = current_line:match("%[([%w_]+)::class")
+    if not short_name then return nil end
+
+    -- Find controller definition `use ...Controller`
+    local lines = vim.api.nvim_buf_get_lines(0, 0, current_row, false)
+    for _, l in ipairs(lines) do
+      local full = l:match("^%s*use%s+([%w\\_]+"..short_name..");")
+      if full then
+        return full:gsub(";", "")
+      end
+    end
+    return nil
+  end
+
+  local controller = extract_controller_from_line(line, row)
+
+  if not controller then
+    print("Controller not found on this lines.")
+    return
+  end
+
+  local file_path = get_controller_path(controller)
+  if not Path:new(file_path):exists() then
+    print("File controller not found: " .. file_path)
+    return
+  end
+
+  local funcs = extract_functions(file_path)
+
+  pickers.new({}, {
+    prompt_title = "Select Function",
+    finder = finders.new_table {
+      results = funcs
+    },
+    sorter = conf.generic_sorter({}),
+    attach_mappings = function(prompt_bufnr, map)
+      actions.select_default:replace(function()
+        actions.close(prompt_bufnr)
+        local selection = action_state.get_selected_entry()
+        if not selection then return end
+
+        local new_line = line:gsub(", ]", ", '" .. selection[1] .. "']")
+        vim.api.nvim_buf_set_lines(0, row - 1, row, false, { new_line })
+      end)
+      return true
+    end
+  }):find()
+end
+
 
 return M
