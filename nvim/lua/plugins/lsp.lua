@@ -16,6 +16,7 @@ return {
 					"tailwindcss",
 					"emmet_ls",
 					"marksman",
+          "bashls", -- bash lsp
 					"tsserver", -- ts
 					"intelephense", -- php lsp
 					"pyright", -- python lsp
@@ -61,6 +62,18 @@ return {
 			lspconfig.html.setup({})
 			lspconfig.cssls.setup({})
 			lspconfig.marksman.setup({})
+
+      -- lsp bashls
+      lspconfig.bashls.setup({
+        capabilities = capabilities,
+        on_attach = function (client)
+          client.server_capabilities.documentFormattingProvider = true
+          -- vim.lsp.handlers["textDocument/hover"] = function() end
+          -- Disable hover and diagnostics notifications
+          vim.lsp.handlers["textDocument/hover"] = function() end
+          vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
+        end
+      })
 
 			-- lsp tailwindcss
 			lspconfig.tailwindcss.setup({
