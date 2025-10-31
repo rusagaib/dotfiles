@@ -8,14 +8,46 @@ function makeitrun ()
       echo -e "Starting tmux session.."
       tmux new -s prod -n docs 
     ;;
-    s|start) 
-      tmux new-window -t prod
-      tmux rename-window -t prod:2 'ide'
-      tmux new-window -t prod
-      tmux rename-window -t prod:3 'term' 
-      tmux new-window -t prod
-      tmux rename-window -t prod:4 'htop'
-      tmux send-keys -t prod:htop "htop" C-m     
+    s|start)
+      # auto create session if none 
+      if ! tmux has-session -t "${session}" 2>/dev/null; then
+        echo "Session '${session}' not found. Creating..."
+        tmux new-session -d -s "${session}" -n hq
+      fi
+
+      case "${template}" in
+        dev)
+          echo "Applying DEV template to session '${session}'..."
+          tmux new-window -t "${session}" -n code
+          tmux new-window -t "${session}" -n server
+          tmux send-keys -t "${session}:server" "cd ~/project && php artisan serve" C-m
+          tmux new-window -t "${session}" -n logs
+          tmux send-keys -t "${session}:logs" "tail -f storage/logs/laravel.log" C-m
+        ;;
+        rad)
+          echo "Applying RAD template to session '${session}'..."
+          clear
+          tmux new-window -t "${session}" -n sshtAPI
+          tmux send-keys -t "${session}:sshtAPI" "${cdtoapi}" C-m
+          tmux new-window -t "${session}" -n pacs-lite
+          tmux send-keys -t "${session}:pacs-lite" "${cdtoplite}" C-m
+          tmux new-window -t "${session}" -n drouter
+          tmux send-keys -t "${session}:drouter" "${cdtodrouter}" C-m
+          tmux new-window -t "${session}" -n mysql
+          tmux send-keys -t "${session}:mysql" "${cdtomysql}" C-m
+          tmux new-window -t "${session}" -n authken
+          tmux send-keys -t "${session}:authken" "${cdtoauthken}" C-m
+          tmux new-window -t "${session}" -n nginx-acme
+          tmux send-keys -t "${session}:nginx-acme" "${cdtonginxacme}" C-m
+        ;;
+        *)
+          echo "Applying DEFAULT template to session '${session}'..."
+          tmux new-window -t "${session}" -n ide
+          tmux new-window -t "${session}" -n term
+          tmux new-window -t "${session}" -n htop
+          tmux send-keys -t "${session}:htop" "htop" C-m
+        ;;
+      esac
     ;;
     a|attach)
       tmux a -t prod 
