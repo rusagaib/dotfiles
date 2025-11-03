@@ -3,16 +3,25 @@
 function makeitrun ()
 {
   opt="$1"
+  name="$2"
+  template="$3"
+
+  # default session name kalau ga ada nama
+  session="${name:-prod}"
+
   case "${opt}" in
-    i|init) 
-      echo -e "Starting tmux session.."
-      tmux new -s prod -n docs 
+    i|init)
+      echo -e "Creating tmux session '${session}'..."
+      tmux new-session -d -s "${session}" -n main
+      echo -e "Session '${session}' created."
+      # auto-attach
+      tmux attach -t "${session}"
     ;;
     s|start)
-      # auto create session if none 
+      # kalau belum ada session, otomatis buat
       if ! tmux has-session -t "${session}" 2>/dev/null; then
         echo "Session '${session}' not found. Creating..."
-        tmux new-session -d -s "${session}" -n hq
+        tmux new-session -d -s "${session}" -n main
       fi
 
       case "${template}" in
@@ -20,13 +29,10 @@ function makeitrun ()
           echo "Applying DEV template to session '${session}'..."
           tmux new-window -t "${session}" -n code
           tmux new-window -t "${session}" -n server
-          tmux send-keys -t "${session}:server" "cd ~/project && php artisan serve" C-m
           tmux new-window -t "${session}" -n logs
-          tmux send-keys -t "${session}:logs" "tail -f storage/logs/laravel.log" C-m
         ;;
         rad)
           echo "Applying RAD template to session '${session}'..."
-          clear
           tmux new-window -t "${session}" -n sshtAPI
           tmux send-keys -t "${session}:sshtAPI" "${cdtoapi}" C-m
           tmux new-window -t "${session}" -n pacs-lite
@@ -50,31 +56,48 @@ function makeitrun ()
       esac
     ;;
     a|attach)
-      tmux a -t prod 
+      if tmux has-session -t "${session}" 2>/dev/null; then
+        echo "Attaching to session '${session}'..."
+        tmux attach -t "${session}"
+      else
+        echo "Session '${session}' not found."
+      fi
+    ;;
+    d|detach)
+      echo "Detaching current tmux client..."
+      tmux detach-client
     ;;
     q|quit)
-      echo -e "Killing all tmux session..."
-      sleep 2 
-      tmux kill-session -t prod 
+      if tmux has-session -t "${session}" 2>/dev/null; then
+        echo "Killing session '${session}'..."
+        tmux kill-session -t "${session}"
+      else
+        echo "Session '${session}' not found."
+      fi
     ;;
-    qa|quit)
-      echo -e "Killing all tmux session..."
-      sleep 2 
-      tmux kill-server  
-    ;;
-    -h|--help)
-      echo -e "i|s|a|l|q| - init|start|attach|list|quit/kill-session"
+    qa)
+      echo "Killing all tmux sessions..."
+      tmux kill-server
     ;;
     l|ls|list)
-      echo -e "current session: "
-      tmux ls
+      echo "Current tmux sessions:"
+      tmux ls || echo "No active sessions."
     ;;
-    *) 
-      echo "no opts.. (or read -h)" 
+    -h|--help)
+      echo -e "Usage:"
+      echo -e "  rhq i [name]             - init new session (default: prod, auto-attach)"
+      echo -e "  rhq s [name] [template]  - start template (default|dev|rad)"
+      echo -e "  rhq a [name]             - attach to session"
+      echo -e "  rhq d                    - detach current client"
+      echo -e "  rhq q [name]             - quit specific session"
+      echo -e "  rhq qa                   - quit all sessions"
+      echo -e "  rhq l                    - list sessions"
+    ;;
+    *)
+      echo "No valid option. Use -h for help."
     ;;
   esac
 }
 
-# calling makeitrun
-makeitrun $1
+makeitrun "$1" "$2" "$3"
 
