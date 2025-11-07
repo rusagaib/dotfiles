@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source $HOME/.config/tmux/.env
+
 function makeitrun ()
 {
   opt="$1"
@@ -34,17 +36,17 @@ function makeitrun ()
         rad)
           echo "Applying RAD template to session '${session}'..."
           tmux new-window -t "${session}" -n sshtAPI
-          tmux send-keys -t "${session}:sshtAPI" "${cdtoapi}" C-m
+          tmux send-keys -t "${session}:sshtAPI" "cd ${API} && clear" C-m
           tmux new-window -t "${session}" -n pacs-lite
-          tmux send-keys -t "${session}:pacs-lite" "${cdtoplite}" C-m
+          tmux send-keys -t "${session}:pacs-lite" "cd ${PLITE} && clear" C-m
           tmux new-window -t "${session}" -n drouter
-          tmux send-keys -t "${session}:drouter" "${cdtodrouter}" C-m
+          tmux send-keys -t "${session}:drouter" "cd ${DROUTER} && clear" C-m
           tmux new-window -t "${session}" -n mysql
-          tmux send-keys -t "${session}:mysql" "${cdtomysql}" C-m
+          tmux send-keys -t "${session}:mysql" "cd ${MYSQL} && clear" C-m
           tmux new-window -t "${session}" -n authken
-          tmux send-keys -t "${session}:authken" "${cdtoauthken}" C-m
+          tmux send-keys -t "${session}:authken" "cd ${AUTHKEN} && clear" C-m
           tmux new-window -t "${session}" -n nginx-acme
-          tmux send-keys -t "${session}:nginx-acme" "${cdtonginxacme}" C-m
+          tmux send-keys -t "${session}:nginx-acme" "cd ${NGINXACME} && clear" C-m
         ;;
         *)
           echo "Applying DEFAULT template to session '${session}'..."
