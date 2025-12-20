@@ -1,1 +1,0 @@
-require("devicons-config/devicons")

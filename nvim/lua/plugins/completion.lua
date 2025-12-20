@@ -4,7 +4,7 @@ return {
         dependencies = { "rafamadriz/friendly-snippets" },
         config = function()
             -- Load custom snippets
-            require("luasnip.loaders.from_lua").lazy_load({ paths = "./lua/snippets/" })
+            require("luasnip.loaders.from_lua").lazy_load({ paths = "./lua/core/snippets" })
 
             -- Load VSCode-style snippets
             require("luasnip.loaders.from_vscode").lazy_load()

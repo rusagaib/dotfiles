@@ -1,0 +1,5 @@
+require('themes.color-config')
+-- require('color-config.nightfox')
+-- require('color-config.kanagawa')
+require('themes.devicons-config')
+require('themes.lualine-config')

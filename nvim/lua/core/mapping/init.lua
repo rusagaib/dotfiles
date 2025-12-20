@@ -325,4 +325,4 @@ keymap(
   { noremap = true, silent = true, desc="[laravelutls] Laravel Named Method Picker (lnm)" }
 )
 
-require("mapping.maphelp")
+require("core.mapping.maphelp")

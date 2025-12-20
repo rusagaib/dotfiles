@@ -47,6 +47,9 @@ local options = {
   foldlevel = 99,                           -- Start unfolded
   foldlevelstart = 99,                      -- Ensure all folds are open when starting
   foldmethod = "expr",                   -- Use manual folding to avoid auto-folding, "expr", "manual"
+
+  -- new vim opt winborder
+  winborder = 'rounded',
 }
 
 --vim.g.loaded_netrw = 1

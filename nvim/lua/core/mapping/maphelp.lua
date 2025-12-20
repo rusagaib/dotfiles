@@ -27,6 +27,10 @@ end, {})
 
 -- You can now use :ShowKeymaps to print all key mappings
 
+-- Basic key: 
+-- u = undo (Normal mode)
+-- Ctrl+r = redo (Normal mode)
+
 -- Basic key to move around: 
 -- [{ = move to open brackets
 -- ]} = move to closed brackets

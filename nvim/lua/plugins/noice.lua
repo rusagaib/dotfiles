@@ -53,13 +53,13 @@ return {
 						skip = true,
 					},
 				},
-				{
-					filter = {
-						event = "lsp",
-						kind = "hover",
-					},
-					view = "hover",
-				},
+				-- {
+				-- 	filter = {
+				-- 		event = "lsp",
+				-- 		kind = "hover",
+				-- 	},
+				-- 	view = "hover",
+				-- },
 				{
 					filter = {
 						event = "lsp",
