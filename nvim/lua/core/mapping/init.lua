@@ -105,11 +105,12 @@ keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 -- Close buffers
 -- this can be dangerous so becarefull
 --keymap("n", "<leader>b", ":b", opts)
-keymap("n", "<leader>bn", ":bd", opts)
+-- buffer delete/remove
+-- keymap("n", "<leader>br", ":bd", opts)
 keymap("n", "<C-q>", ":q", opts)
 
 -- Clear latest search
-keymap("n", "<leader>cl", ":nohlsearch<CR>", opts)
+keymap("n", "<leader>cls", ":nohlsearch<CR>", opts)
 
 -- Usefull replace using Ragex
 -- change single quote to double quote
@@ -271,7 +272,8 @@ keymap(
 )
 
 -- toggle emmet_lsp
-vim.api.nvim_set_keymap('n', '<leader>lspe', ":lua require('utils').scripts.ToggleEmmetLs()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>lspe', ":lua require('utils').scripts.ToggleEmmetLs()<CR>",
+  { noremap = true, silent = true })
 
 -- solely for Laravel Projk (laravelutls)
 -- M.laravelutls = require('utils.laravelutls')
@@ -290,7 +292,7 @@ keymap(
   'n',
   '<leader>lbv',
   [[<Esc>:lua require('utils').laravelutls.PickViewPage()<CR>]],
-  { noremap = true, silent = true, desc="[laravelutls] Laravel Blade resources View picker (lbv)" }
+  { noremap = true, silent = true, desc = "[laravelutls] Laravel Blade resources View picker (lbv)" }
 )
 -- Laravel Inertia Search Resources UI (lir)
 -- M.SearchInertiaResources = function()
@@ -298,7 +300,7 @@ keymap(
   'n',
   '<leader>lir',
   [[<Esc>:lua require('utils').laravelutls.SearchInertiaResources()<CR>]],
-  { noremap = true, silent = true, desc="[laravelutls] Laravel Inertia search Resources (lir)" }
+  { noremap = true, silent = true, desc = "[laravelutls] Laravel Inertia search Resources (lir)" }
 )
 -- Laravel named routes (lnr)
 -- M.SearchRouteNames = function()
@@ -306,7 +308,7 @@ keymap(
   'n',
   '<leader>lnr',
   [[<Esc>:lua require('utils').laravelutls.SearchRouteNames()<CR>]],
-  { noremap = true, silent = true, desc="[laravelutls] Laravel Named Routes picker (lnr)" }
+  { noremap = true, silent = true, desc = "[laravelutls] Laravel Named Routes picker (lnr)" }
 )
 -- Laravel Spatie Permission Picker (lpp)
 -- M.SpatiePermisionPicker = function()
@@ -314,7 +316,7 @@ keymap(
   'n',
   '<leader>lpp',
   [[<Esc>:lua require('utils').laravelutls.SpatiePermisionPicker()<CR>]],
-  { noremap = true, silent = true, desc="[laravelutls] Laravel spatie Permission Picker (lpp)" }
+  { noremap = true, silent = true, desc = "[laravelutls] Laravel spatie Permission Picker (lpp)" }
 )
 -- Laravel Named Method Picker (lnm)
 -- M.LaravelMethodPicker = function()
@@ -322,7 +324,16 @@ keymap(
   'n',
   '<leader>lnm',
   [[<Esc>:lua require('utils').laravelutls.LaravelMethodPicker()<CR>]],
-  { noremap = true, silent = true, desc="[laravelutls] Laravel Named Method Picker (lnm)" }
+  { noremap = true, silent = true, desc = "[laravelutls] Laravel Named Method Picker (lnm)" }
+)
+-- PHPStan Larevel App Analyze (lsa)
+-- M.LaravelMethodPicker = function()
+keymap(
+  'n',
+  '<leader>lsa',
+  [[<Esc>:lua require('utils').laravelutls.LaravelPhpStanAppAnalyze()<CR>]],
+  { noremap = true, silent = true, desc = "[laravelutls] Laravel PhpStan App Analyze (lsa)" }
 )
 
+require("core.mapping.curlkeymap")
 require("core.mapping.maphelp")
