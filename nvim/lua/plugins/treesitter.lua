@@ -2,7 +2,7 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	config = function()
-		local configs = require("nvim-treesitter.configs")
+		local configs = require("nvim-treesitter.config")
 
 		configs.setup({
 			ensure_installed = {
@@ -15,9 +15,9 @@ return {
 				"svelte",
 				"go",
 				"json",
-        "php",
-        "phpdoc",
-        "python",
+				"php",
+				"phpdoc",
+				"python",
 			},
 			sync_install = false,
 			highlight = { enable = true },
