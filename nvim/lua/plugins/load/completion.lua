@@ -20,7 +20,14 @@ return {
     {
         "hrsh7th/nvim-cmp",
         dependencies = {
-          { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
+          { 
+	  "roobert/tailwindcss-colorizer-cmp.nvim", 
+	  config = function()
+	    require("tailwindcss-colorizer-cmp").setup({
+	      color_square_width = 2,
+	    })
+	  end  
+	  },
         },
         config = function()
             local cmp = require("cmp")
