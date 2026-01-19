@@ -53,14 +53,13 @@ keymap.set(
 keymap.set(
 	"v",
 	"<leader>mpd",
-	"<cmd>CodeSnapSave<cr>",
+	"<cmd>CodeSnapSave<cr>", -- custom save_path = "~/Pictures" doesn't work on v2.xx
+	-- function()
+	-- 	local codesnap = require("codesnap")
+	-- 	codesnap.Save
+	-- end,
 	{ noremap = true, silent = true, desc = "Save selected code snapshot in ~/Pictures" }
 )
 
 -- toggle emmet_lsp
-keymap.set(
-	"n",
-	"<leader>lspe",
-	":lua require('utils').scripts.ToggleEmmetLs()<CR>",
-	{ noremap = true, silent = true }
-)
+keymap.set("n", "<leader>lspe", ":lua require('utils').scripts.ToggleEmmetLs()<CR>", { noremap = true, silent = true })
