@@ -2,8 +2,8 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	config = function()
-		local configs = require("nvim-treesitter.config")
-
+		-- local configs = require("nvim-treesitter.config")
+		local configs = require("nvim-treesitter")
 		configs.setup({
 			ensure_installed = {
 				"lua",
@@ -17,6 +17,7 @@ return {
 				"json",
 				"php",
 				"phpdoc",
+				"blade",
 				"python",
 			},
 			sync_install = false,

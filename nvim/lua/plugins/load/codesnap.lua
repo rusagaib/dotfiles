@@ -1,6 +1,6 @@
 return {
-	-- // init env setup for version 1.6.3 (https://github.com/mistricky/codesnap.nvim/tree/be6d6b9a3b5e6999edbda76b16dace03d9bfcd3d)
-	-- // also use commit id be6d6b9a3b5e6999edbda76b16dace03d9bfcd3d
+	-- // init env setup for version 1.6.3 (https://github.com/mistricky/codesnap.nvim/tree/da475d35a9be9a0670f8145a8b13ff8aa9356108)
+	-- // also use commit id da475d35a9be9a0670f8145a8b13ff8aa9356108
 	-- // on lazy-lock.json
 	-- sudo apt-get install build-essential
 	-- sudo apt-get install clang libclang-dev
