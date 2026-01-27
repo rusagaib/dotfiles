@@ -18,6 +18,14 @@ keymap.set(
 	[[<Esc>:lua require('utils').laravelutls.PickViewPage()<CR>]],
 	{ noremap = true, silent = true, desc = "[laravelutls] Laravel Blade resources View picker (lbv)" }
 )
+-- Laravel Go to Blade views (lgv)
+-- M.GoToBladeView = function()
+keymap.set(
+	"n",
+	"<leader>lgv",
+	[[<Esc>:lua require('utils').laravelutls.GoToBladeView()<CR>]],
+	{ noremap = true, silent = true, desc = "Laravel Go to Blade views (lgv)" }
+)
 -- Laravel Inertia Search Resources UI (lir)
 -- M.SearchInertiaResources = function()
 keymap.set(
@@ -51,10 +59,28 @@ keymap.set(
 	{ noremap = true, silent = true, desc = "[laravelutls] Laravel Named Method Picker (lnm)" }
 )
 -- PHPStan Larevel App Analyze (lsa)
--- M.LaravelMethodPicker = function()
+-- M.LaravelPhpStanAppAnalyze = function()
 keymap.set(
 	"n",
 	"<leader>lsa",
 	[[<Esc>:lua require('utils').laravelutls.LaravelPhpStanAppAnalyze()<CR>]],
 	{ noremap = true, silent = true, desc = "[laravelutls] Laravel PhpStan App Analyze (lsa)" }
+)
+
+-- (Ide-Helper) Larevel Ide-Helper Generate (lg)
+-- M.LaravelIdeHelperGenerate = function()
+keymap.set(
+	"n",
+	"<leader>lg",
+	[[<Esc>:lua require('utils').laravelutls.LaravelIdeHelperGenerate()<CR>]],
+	{ noremap = true, silent = true, desc = "[laravelutls] (Ide-Helper) Laravel Ide-Helper Generate (lg)" }
+)
+
+-- (Ide-Helper) Larevel Ide-Helper Generate Models (lgm)
+-- M.LaravelIdeHelperGenerateModels = function()
+keymap.set(
+	"n",
+	"<leader>lgm",
+	[[<Esc>:lua require('utils').laravelutls.LaravelIdeHelperGenerateModels()<CR>]],
+	{ noremap = true, silent = true, desc = "[laravelutls] (Ide-Helper) Laravel Ide-Helper Generate Models (lgm)" }
 )
