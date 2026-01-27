@@ -1,8 +1,8 @@
 require("catppuccin").setup({
 	flavour = "mocha", -- latte, frappe, macchiato, mocha
 	-- background = { -- :h background
-	--     light = "latte",
-	--     dark = "mocha",
+	-- 	light = "latte",
+	-- 	dark = "mocha",
 	-- },
 	transparent_background = true,
 	show_end_of_buffer = false, -- show the '~' characters after the end of buffers
@@ -120,6 +120,7 @@ vim.api.nvim_set_hl(0, "Type", { fg = pastel_red, bold = true }) -- Types (e.g.,
 vim.api.nvim_set_hl(0, "Statement", { fg = pastel_red, bold = true }) -- Statements (e.g., for, while, switch)
 
 -- Override UI elements to use the pastel red accent color
+vim.api.nvim_set_hl(0, "LineNr", { fg = "#8b848d" })
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = pastel_red, bold = true }) -- Line number of the current line
 vim.api.nvim_set_hl(0, "PmenuSel", { bg = pastel_red, fg = "#000000" }) -- Popup menu selection
 -- vim.api.nvim_set_hl(0, 'Search', { bg = pastel_red, fg = '#000000' })    -- Search highlights
