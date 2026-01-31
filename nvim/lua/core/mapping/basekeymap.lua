@@ -121,7 +121,7 @@ keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
 keymap.set("n", "<leader>ff", "<cmd>Telescope fd<cr>", opts)
 keymap.set("n", "<leader>fe", "<cmd>Telescope file_browser<cr>", opts)
 keymap.set("n", "<leader>fg", "<cmd>lua require'telescope.builtin'.live_grep()<cr>", opts)
--- keymap.set('n', '<leader>fl', "<cmd>Telescope marks<cr>", opts)
+keymap.set("n", "<leader>fl", "<cmd>Telescope marks<cr>", opts)
 -- -- Code Action using Custom scripts
 -- keymap.set('n', '<leader>ca', ":lua require('utils').scripts.ShowCodeAction()<CR>", opts)
 -- Telescope mapping (Extra)

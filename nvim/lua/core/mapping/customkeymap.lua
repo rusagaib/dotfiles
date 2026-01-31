@@ -19,6 +19,10 @@ keymap.set("n", "<leader>-", "<CMD>Oil<CR>", opts)
 -- keymap.set("n", "<leader>ee", ":Explore<CR>", opts)
 -- keymaset("n", "<leader>E", ":Explore<Return>", opts)
 
+-- Marks
+-- Delete all marks (nuking all marks)
+keymap.set("n", "<leader>dm", ":delmarks!", opts)
+
 -- Search & replace
 keymap.set(
 	"v",
@@ -36,7 +40,13 @@ keymap.set(
 )
 
 -- launch mocp via floatterm
-keymap.set("n", "<leader>mz", "<cmd>FloatermNew --height=0.80 --width=0.80 --wintype=float --name=mocp mocp<cr>", opts)
+-- keymap.set("n", "<leader>mz", "<cmd>FloatermNew --height=0.80 --width=0.80 --wintype=float --name=mocp mocp<cr>", opts)
+keymap.set(
+	"n",
+	"<leader>mz",
+	"<cmd>FloatermNew --height=0.25 --width=0.25 --wintype=float --position=bottomright --name=rmpc rmpc<cr>",
+	opts
+)
 
 -- open url under cursors
 keymap.set("n", "gx", ":lua require('utils').scripts.OpenUrl()<CR>", opts)
@@ -63,3 +73,33 @@ keymap.set(
 
 -- toggle emmet_lsp
 keymap.set("n", "<leader>lspe", ":lua require('utils').scripts.ToggleEmmetLs()<CR>", { noremap = true, silent = true })
+
+-- Harpoon
+keymap.set("n", "<leader>a", function()
+	require("harpoon"):list():add()
+end)
+
+keymap.set("n", "<C-e>", function()
+	local harpoon = require("harpoon")
+	require("harpoon.ui"):toggle_quick_menu(harpoon:list())
+end)
+
+keymap.set("n", "<leader>1", function()
+	require("harpoon"):list():select(1)
+end)
+keymap.set("n", "<leader>2", function()
+	require("harpoon"):list():select(2)
+end)
+keymap.set("n", "<leader>3", function()
+	require("harpoon"):list():select(3)
+end)
+keymap.set("n", "<leader>4", function()
+	require("harpoon"):list():select(4)
+end)
+
+keymap.set("n", "<C-S-P>", function()
+	require("harpoon"):list():prev()
+end)
+keymap.set("n", "<C-S-N>", function()
+	require("harpoon"):list():next()
+end)

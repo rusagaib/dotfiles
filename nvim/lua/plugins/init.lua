@@ -24,4 +24,5 @@ return {
 	require("plugins.load.treesitter"),
 	require("plugins.load.trouble"),
 	require("plugins.load.ufo"),
+	require("plugins.load.harpoon"),
 }
