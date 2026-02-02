@@ -70,7 +70,7 @@ multiplier = 3
 
 [window]
 dynamic_padding = false
-opacity = 0.90
+opacity = 0.78
 
 [window.class]
 general = "Alacritty"
